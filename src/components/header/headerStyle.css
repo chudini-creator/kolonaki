@@ -1,0 +1,84 @@
+.siteHeader {
+  width: 100%;
+  height: 75px;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid var(--color-header-border);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: var(--padding-app);
+}
+
+.siteHeader .headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.siteHeader .logo {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.siteHeader .logo a {
+  color: var(--text-white);
+  transition: opacity 0.2s ease;
+}
+
+.siteHeader .logo a:hover {
+  opacity: 0.85;
+}
+
+.siteHeader .headerNav {
+  display: flex;
+  align-items: center;
+}
+
+.siteHeader .navList {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.siteHeader .navLink {
+  color: var(--color-nav-link);
+  font-size: 1rem;
+  font-weight: 300;
+  transition: color 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.siteHeader .navLink:hover {
+  color: var(--color-nav-hover);
+}
+
+.siteHeader #shopHeadBut .shopButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 2rem;
+  background-color: var(--color-shop-btn-bg);
+  color: var(--color-shop-btn-text);
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px var(--color-shop-btn-shadow);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.siteHeader #shopHeadBut .shopButton:hover {
+  background-color: var(--color-shop-btn-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--color-shop-btn-shadow);
+}
