@@ -1,43 +1,62 @@
 .siteHeader {
   width: 100%;
   height: 75px;
-  background-color: transparent;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-bottom: 1px solid var(--color-header-border);
+  background-color: rgba(var(--main-color), 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-header-border, rgba(255, 255, 255, 0.1));
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  padding: var(--padding-app);
+  padding: 0 40px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.siteHeader.scrolled {
+  background-color: rgba(var(--main-color), 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.siteHeader.menuOpen {
+  background-color: rgba(var(--main-color), 0.98);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 .siteHeader .headerContainer {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 .siteHeader .logo {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+  z-index: 1001;
 }
 
 .siteHeader .logo a {
-  color: var(--text-white);
-  transition: opacity 0.2s ease;
+  color: var(--text-white, #ffffff);
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .siteHeader .logo a:hover {
-  opacity: 0.85;
+  opacity: 0.88;
+  transform: scale(1.02);
 }
 
-.siteHeader .headerNav {
+.siteHeader .desktopNav {
   display: flex;
   align-items: center;
 }
@@ -45,40 +64,273 @@
 .siteHeader .navList {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 2.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .siteHeader .navLink {
-  color: var(--color-nav-link);
-  font-size: 1rem;
-  font-weight: 300;
+  color: var(--color-nav-link, #e2e8f0);
+  font-size: 0.95rem;
+  font-weight: 400;
   transition: color 0.2s ease, transform 0.2s ease;
   position: relative;
+  padding: 6px 0;
+}
+
+.siteHeader .navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-hover, var(--main-color));
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
 }
 
 .siteHeader .navLink:hover {
-  color: var(--color-nav-hover);
+  color: #ffffff;
+}
+
+.siteHeader .navLink:hover::after {
+  width: 100%;
 }
 
 .siteHeader #shopHeadBut .shopButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 2rem;
-  background-color: var(--color-shop-btn-bg);
-  color: var(--color-shop-btn-text);
-  font-size: 1rem;
-  font-weight: 400;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px var(--color-shop-btn-shadow);
+  gap: 8px;
+  padding: 0.55rem 1.6rem;
+  background-color: var(--color-shop-btn-bg, #ffffff);
+  color: var(--color-shop-btn-text, #000000);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--button-border-radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.siteHeader #shopHeadBut .shopButton .shopIcon {
+  transition: transform 0.25s ease;
+}
+
 .siteHeader #shopHeadBut .shopButton:hover {
-  background-color: var(--color-shop-btn-hover);
+  background-color: var(--color-shop-btn-hover, var(--main-color));
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--color-shop-btn-shadow);
+  box-shadow: 0 6px 20px rgba(var(--main-color), 0.45);
+}
+
+.siteHeader #shopHeadBut .shopButton:hover .shopIcon {
+  transform: scale(1.1);
+}
+
+.hamburgerButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+}
+
+.hamburgerButton:hover {
+  background: rgba(var(--main-color), 0.85);
+  border-color: rgba(var(--secondary-color), 0.5);
+  transform: scale(1.05);
+}
+
+.hamburgerButton:active {
+  transform: scale(0.95);
+}
+
+.hamburgerButton.active {
+  background: rgba(239, 68, 68, 0.4);
+  border-color: rgba(239, 68, 68, 0.7);
+}
+
+.hamburgerButton.active:hover {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+.mobileBackdrop {
+  display: none;
+}
+
+.mobileNav {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .siteHeader {
+    padding: 0 20px;
+    height: 70px;
+  }
+
+ 
+  .siteHeader .desktopNav {
+    display: none !important;
+  }
+
+  
+  .hamburgerButton {
+    display: flex;
+  }
+
+  
+  .mobileBackdrop {
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    height: calc(100dvh - 70px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 998;
+  }
+
+  .mobileBackdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobileNav {
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    max-height: calc(100vh - 70px);
+    max-height: calc(100dvh - 70px);
+    overflow-y: auto;
+    background: rgba(var(--main-color), 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translateY(-105%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease,
+                visibility 0.35s;
+    z-index: 999;
+  }
+
+  .mobileNav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobileNavContent {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px 32px;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .mobileNavList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobileNavList li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobileNavLink {
+    display: flex;
+    align-items: center;
+    padding: 16px 8px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #f1f5f9;
+    transition: all 0.2s ease;
+  }
+
+  .mobileNavLink:hover,
+  .mobileNavLink:active {
+    color: rgb(var(--secondary-color));
+    padding-left: 16px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .mobileShopContainer {
+    margin-top: 12px;
+  }
+
+  .mobileShopButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    background-color: var(--color-shop-btn-bg, #ffffff);
+    color: #000000;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+  }
+
+  .mobileShopButton:hover,
+  .mobileShopButton:active {
+    background-color: var(--color-shop-btn-hover, #4b712a);
+    color: #ffffff;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .siteHeader {
+    padding: 0 16px;
+    height: 64px;
+  }
+
+  .siteHeader .logo {
+    font-size: 1.4rem;
+  }
+
+  .mobileBackdrop {
+    top: 64px;
+    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
+  }
+
+  .mobileNav {
+    top: 64px;
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
+  }
+
+  .hamburgerButton {
+    width: 40px;
+    height: 40px;
+  }
 }
