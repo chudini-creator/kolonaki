@@ -1,4 +1,6 @@
 :root {
+  --main-color: 75, 113, 42; 
+  --secondary-color: 216, 255, 154;
   --text-white: #ffffff;
   --color-text-main: #1f2937;
   --color-text-muted: #94a3b8;
@@ -12,6 +14,7 @@
   --color-shop-btn-shadow: rgba(0, 0, 0, 0.4);
 
   --padding-app: 16px 40px;
+  --button-border-radius: 10px;
 }
 
 * {
