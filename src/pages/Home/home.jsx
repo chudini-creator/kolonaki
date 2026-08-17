@@ -47,9 +47,7 @@ function Home() {
         showProgressBar={true}
         showCounter={true}
       />
-      <div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, nesciunt? Debitis minus doloremque distinctio, impedit ullam odit possimus vel magni deserunt natus porro perspiciatis laboriosam ipsum. Incidunt accusantium voluptatem quidem quam aperiam cumque beatae molestiae nihil, maxime possimus perspiciatis est itaque delectus ullam natus odit deleniti qui aspernatur facere officiis aliquam. Sed unde ad illum voluptas porro aut sequi minus voluptatem asperiores nemo deleniti eaque, deserunt quos fuga nihil. Maxime!</p>
-      </div>
+      
     </div>
   );
 }

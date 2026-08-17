@@ -44,7 +44,7 @@
 }
 
 .siteHeader .logo a {
-  color: var(--text-white, #ffffff);
+  color: rgb(var(--main-color));
   display: inline-flex;
   align-items: center;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -70,7 +70,7 @@
 }
 
 .siteHeader .navLink {
-  color: var(--color-nav-link, #e2e8f0);
+  color: rgb(var(--main-color));
   font-size: 0.95rem;
   font-weight: 400;
   transition: color 0.2s ease, transform 0.2s ease;
@@ -104,7 +104,7 @@
   justify-content: center;
   gap: 8px;
   padding: 0.55rem 1.6rem;
-  background-color: var(--color-shop-btn-bg, #ffffff);
+  background-color: rgb(var(--main-color));
   color: var(--color-shop-btn-text, #000000);
   font-size: 0.95rem;
   font-weight: 600;
@@ -118,10 +118,9 @@
 }
 
 .siteHeader #shopHeadBut .shopButton:hover {
-  background-color: var(--color-shop-btn-hover, var(--main-color));
+  background-color: var(--color-shop-btn-hover);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(var(--main-color), 0.45);
 }
 
 .siteHeader #shopHeadBut .shopButton:hover .shopIcon {
@@ -134,12 +133,12 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--main-color), 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
-  color: #ffffff;
+  color: rgb(var(--secondary-color));
   cursor: pointer;
   padding: 0;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -174,6 +173,10 @@
 }
 
 @media screen and (max-width: 900px) {
+  .siteHeader .logo a {
+    color: rgb(var(--secondary-color));
+  }
+
   .siteHeader {
     padding: 0 20px;
     height: 70px;
@@ -267,7 +270,7 @@
     padding: 16px 8px;
     font-size: 1.15rem;
     font-weight: 500;
-    color: #f1f5f9;
+    color: #000000;
     transition: all 0.2s ease;
   }
 

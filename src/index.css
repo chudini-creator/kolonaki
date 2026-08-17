@@ -1,15 +1,13 @@
 :root {
-  --main-color: 75, 113, 42; 
-  --secondary-color: 216, 255, 154;
+  --secondary-color: 75, 113, 42; 
+  --main-color: 255, 255, 210;
   --text-white: #ffffff;
-  --color-text-main: #1f2937;
-  --color-text-muted: #94a3b8;
-  --background: #0f172a;
+  --background: rgb(255,255,210);
   --color-header-border: rgba(255, 255, 255, 0.1);
   --color-nav-link: #e2e8f0;
   --color-hover: #4b712a;
   --color-shop-btn-bg: #ffffff;
-  --color-shop-btn-hover: #4b712a;
+  --color-shop-btn-hover: rgb(75, 113, 42);
   --color-shop-btn-text: #000000;
   --color-shop-btn-shadow: rgba(0, 0, 0, 0.4);
 
