@@ -1,6 +1,7 @@
 :root {
   --secondary-color: 75, 113, 42; 
   --main-color: 255, 255, 210;
+  --accent-color: 15, 23, 42;
   --text-white: #ffffff;
   --background: rgb(255,255,210);
   --color-header-border: rgba(255, 255, 255, 0.1);

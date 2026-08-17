@@ -15,11 +15,11 @@
 }
 
 .siteHeader.scrolled {
-  background-color: rgba(var(--main-color), 0.45);
+  background-color: rgba(var(--main-color), 1);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
-}
+} 
 
 .siteHeader.menuOpen {
   background-color: rgba(var(--main-color), 0.98);
@@ -71,8 +71,8 @@
 
 .siteHeader .navLink {
   color: rgb(var(--main-color));
-  font-size: 0.95rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 500;
   transition: color 0.2s ease, transform 0.2s ease;
   position: relative;
   padding: 6px 0;
@@ -96,6 +96,10 @@
 
 .siteHeader .navLink:hover::after {
   width: 100%;
+}
+
+.siteHeader.scrolled .navLink, .siteHeader.scrolled .logo a {
+  color: rgb(var(--secondary-color));
 }
 
 .siteHeader #shopHeadBut .shopButton {

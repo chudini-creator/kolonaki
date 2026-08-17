@@ -1,5 +1,6 @@
 import "./homeStyle.css";
 import Hero from "../../components/hero/hero";
+import ProductsGallery from "../../components/productsGallery/productsGallery";
 
 const heroSlides = [
   {
@@ -47,6 +48,7 @@ function Home() {
         showProgressBar={true}
         showCounter={true}
       />
+      <ProductsGallery />
       
     </div>
   );
