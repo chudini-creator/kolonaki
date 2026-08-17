@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Sparkles, Droplet } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import "./productsGalleryStyle.css";
 
 const PRODUCTS_GRID_DATA = [
