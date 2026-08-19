@@ -1,0 +1,101 @@
+.shopPage {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.shopHero {
+  width: 100%;
+  padding: 130px 24px 40px;
+  background: radial-gradient(circle at center top, rgba(var(--secondary-color, 75, 113, 42), 0.12) 0%, rgba(var(--main-color, 255, 255, 210), 0.4) 60%, transparent 100%);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.shopHeroContainer {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shopHeroTitle {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 16px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.shopHeroDescription {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 32px;
+  max-width: 680px;
+}
+
+.shopPerksGrid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.perkItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: #ffffff;
+  border-radius: 9999px;
+  border: 1px solid rgba(var(--secondary-color, 75, 113, 42), 0.18);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.perkIcon {
+  color: rgb(var(--secondary-color, 75, 113, 42));
+}
+
+.shopMainContent {
+  width: 100%;
+  flex: 1;
+}
+
+.shopMainContent .productsSection {
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .shopHero {
+    padding: 110px 16px 30px;
+  }
+
+  .shopHeroTitle {
+    font-size: 2.2rem;
+  }
+
+  .shopHeroDescription {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .shopPerksGrid {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .perkItem {
+    width: 100%;
+    justify-content: center;
+  }
+}

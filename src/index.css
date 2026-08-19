@@ -1,6 +1,6 @@
 :root {
   --secondary-color: 75, 113, 42; 
-  --main-color: 255, 255, 210;
+  --main-color: 255, 255, 235;
   --accent-color: 15, 23, 42;
   --text-white: #ffffff;
   --background: rgb(255,255,210);
@@ -22,7 +22,7 @@
 
 body {
   margin: 0;
-  background-color: var(--background);
+  background-color: rgb(var(--main-color));
   color: var(--text-white);
   font-family: system-ui, -apple-system, sans-serif;
 }
