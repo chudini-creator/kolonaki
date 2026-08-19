@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Header from './components/header/header';
 import Home from './pages/Home/home';
+import Shop from './pages/Shop/shop';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/shop" element={<Shop />} />
             </Routes>
           </main>
         </div>
