@@ -1,0 +1,233 @@
+.siteFooter {
+  width: 100%;
+  background-color: rgb(var(--secondary-color));
+  color: rgb(var(--accent-color));
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footerMainSection {
+  width: 100%;
+  padding: 70px 24px 60px;
+  box-sizing: border-box;
+}
+
+.footerMainContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr 1.1fr 1.2fr;
+  gap: 48px;
+  width: 100%;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footerLogoLink {
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.footerLogo {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: rgb(var(--main-color));
+  letter-spacing: -0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.footerLogo:hover {
+  opacity: 0.85;
+}
+
+.footerBrandText {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgb(var(--accent-color));
+  margin: 0;
+  max-width: 360px;
+}
+
+.footerColTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgb(var(--main-color));
+  margin: 0;
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footerColTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background-color: rgb(var(--main-color));
+  border-radius: 2px;
+}
+
+.footerLinksList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLink {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(var(--accent-color));
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.footerLink:hover {
+  color: rgb(var(--main-color));
+  transform: translateX(4px);
+}
+
+.footerLink.highlightLink {
+  color: rgb(var(--main-color));
+  font-weight: 600;
+}
+
+.footerLink.highlightLink:hover {
+  color: rgb(var(--main-color));
+}
+
+.footerContactList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footerContactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: rgb(var(--accent-color));
+  transition: color 0.2s ease;
+}
+
+.footerContactItem.addressItem {
+  align-items: flex-start;
+}
+
+.footerContactItem .contactIcon {
+  color: rgb(var(--main-color));
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.subAddress {
+  display: block;
+  font-size: 0.8rem;
+  color: rgb(var(--accent-color));
+  margin-top: 2px;
+}
+
+a.footerContactItem:hover {
+  color: rgb(var(--main-color));
+}
+
+.footerBottomStrip {
+  width: 100%;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  box-sizing: border-box;
+}
+
+.footerBottomContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.copyrightText {
+  font-size: 0.85rem;
+  color: rgb(var(--main-color));
+  margin: 0;
+}
+
+.copyrightText strong {
+  color: rgb(var(--main-color));
+}
+
+.footerBottomLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legalLink {
+  font-size: 0.82rem;
+  color: rgb(var(--main-color));
+  transition: color 0.2s ease;
+}
+
+.legalLink:hover {
+  color: #ffffff;
+}
+
+.dotDivider {
+  color: rgb(var(--main-color));
+  font-size: 0.75rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .footerPerksContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .footerMainContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .footerPerksContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .footerMainSection {
+    padding: 50px 20px 40px;
+  }
+
+  .footerMainContainer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footerBottomContainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footerBottomLinks {
+    justify-content: center;
+  }
+}
