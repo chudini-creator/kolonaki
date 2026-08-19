@@ -85,29 +85,37 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: rgb(var(--main-color));
-  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
   border-radius: 2px;
-}
-
-.siteHeader .navLink:hover {
-  color: rgb(var(--main-color));
 }
 
 .siteHeader .navLink:hover::after {
   width: 100%;
 }
 
-.siteHeader.scrolled .navLink, .siteHeader.scrolled .logo a {
-  color: rgb(var(--secondary-color));
+
+.siteHeader.onHome:not(.scrolled) .navLink:hover {
+  color: rgb(var(--main-color));
 }
 
+.siteHeader.onHome:not(.scrolled) .navLink::after {
+  background-color: rgb(var(--main-color));
+}
+
+
+.siteHeader.onSubpage .navLink:hover,
 .siteHeader.scrolled .navLink:hover {
   color: rgb(var(--accent-color));
 }
 
+.siteHeader.onSubpage .navLink::after,
 .siteHeader.scrolled .navLink::after {
   background-color: rgb(var(--accent-color));
+}
+
+.siteHeader.scrolled .navLink, 
+.siteHeader.scrolled .logo a {
+  color: rgb(var(--secondary-color));
 }
 
 .siteHeader #shopHeadBut .shopButton {

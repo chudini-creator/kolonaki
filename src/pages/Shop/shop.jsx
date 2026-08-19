@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Sparkles, ShieldCheck, Truck, RefreshCw } from "lucide-react";
 import ProductsShowcase from "../../components/productsShowcase/productsShowcase";
 import "./shopStyle.css";
+import PageHero from "../../components/pageHero/pageHero";
 
 function Shop() {
   useEffect(() => {
@@ -18,19 +19,8 @@ function Shop() {
           content="Kup autentyczną grecką oliwę z oliwek Extra Virgin z Peloponezu. Odmiany Koroneiki i Manaki tłoczone na zimno. Bezpieczna i szybka dostawa."
         />
       </Helmet>
-
-      <section className="shopHero">
-        <div className="shopHeroContainer">
-
-          <h1 className="shopHeroTitle">
-            Grecka Oliwa Extra Virgin
-          </h1>
-
-          <p className="shopHeroDescription">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio aperiam culpa, aut voluptas accusantium iste magnam tempora aliquid molestiae illo maiores mollitia repellat iure quidem recusandae iusto vel numquam ab earum saepe labore cum laudantium ea sit? Alias, beatae consequatur.
-          </p>
-
-          <div className="shopPerksGrid">
+      <PageHero title="Grecka Oliwa Extra Virgin" description=" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio aperiam culpa, aut voluptas accusantium iste magnam tempora aliquid molestiae illo maiores mollitia repellat iure quidem recusandae iusto vel numquam ab earum saepe labore cum laudantium ea sit? Alias, beatae consequatur.">
+        <div className="shopPerksGrid">
             <div className="perkItem">
               <Truck size={18} className="perkIcon" />
               <span>Darmowa dostawa od 200 zł</span>
@@ -44,9 +34,8 @@ function Shop() {
               <span>Pancernie pakowane butelki</span>
             </div>
           </div>
-        </div>
-      </section>
-
+      </PageHero>
+      
       <main className="shopMainContent">
         <ProductsShowcase showHeader={false} />
       </main>

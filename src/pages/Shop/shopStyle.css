@@ -5,40 +5,6 @@
   flex-direction: column;
 }
 
-
-.shopHero {
-  width: 100%;
-  padding: 130px 24px 40px;
-  background: radial-gradient(circle at center top, rgba(var(--secondary-color, 75, 113, 42), 0.12) 0%, rgba(var(--main-color, 255, 255, 210), 0.4) 60%, transparent 100%);
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.shopHeroContainer {
-  max-width: 860px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.shopHeroTitle {
-  font-size: 3.2rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 16px;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-}
-
-.shopHeroDescription {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #475569;
-  margin: 0 0 32px;
-  max-width: 680px;
-}
-
 .shopPerksGrid {
   display: flex;
   justify-content: center;
