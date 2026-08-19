@@ -1,7 +1,7 @@
 .productsGallerySection {
   width: 100%;
   padding: 100px 24px 130px;
-  background-color: var(--background, rgb(255, 255, 210));
+  background-color: rgb(var(--main-color), (255, 255, 235));
   color: rgb(var(--secondary-color));
   position: relative;
   box-sizing: border-box;
@@ -90,7 +90,7 @@
   font-weight: 900;
   letter-spacing: 0.08em;
   color: rgb(var(--main-color));
-  -webkit-text-stroke: 1.5px rgba(var(--secondary-color, 75, 113, 42), 0.09);
+  -webkit-text-stroke: 1.5px rgba(var(--secondary-color, 75, 113, 42), 0.4);
   white-space: wrap;
   text-align: center;
   pointer-events: none;
@@ -100,7 +100,7 @@
 }
 
 .galleryCardWrapper:hover .cardWatermark {
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
 .cardHeader {
