@@ -1,9 +1,7 @@
-/* === WRAPPER === */
 .psWrapper {
   width: 100%;
 }
 
-/* === SECTION — STICKY STACK === */
 .psSection {
   position: sticky;
   top: 0;
@@ -29,11 +27,10 @@
   flex-direction: row-reverse;
 }
 
-/* === IMAGE SIDE === */
 .psImgSide {
   width: 46%;
   flex-shrink: 0;
-  background: rgb(var(--secondary-color));
+  background: rgb(var(--main-color));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +79,6 @@
   will-change: transform;
 }
 
-/* === TEXT SIDE === */
 .psTextSide {
   flex: 1;
   background: rgb(var(--main-color));
@@ -114,7 +110,6 @@
   padding: 80px 64px 80px 80px;
 }
 
-/* === TYPOGRAPHY === */
 .psVariety {
   display: block;
   font-size: 0.7rem;
@@ -149,7 +144,6 @@
   margin: 0 0 32px;
 }
 
-/* === TASTING NOTES === */
 .psNotes {
   margin-bottom: 32px;
 }
@@ -173,7 +167,6 @@
   letter-spacing: 0.005em;
 }
 
-/* === META ROW === */
 .psMeta {
   display: flex;
   align-items: center;
@@ -191,7 +184,6 @@
   font-size: 0.85rem;
 }
 
-/* === SCROLL ANIMATIONS === */
 .psAnimate {
   opacity: 0;
   transform: translateY(30px);
@@ -204,7 +196,6 @@
   transform: none;
 }
 
-/* === RESPONSIVE === */
 @media screen and (max-width: 960px) {
   .psSection {
     position: static;

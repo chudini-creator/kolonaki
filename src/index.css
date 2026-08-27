@@ -6,9 +6,9 @@
   --background: rgb(255,255,235);
   --color-header-border: rgba(255, 255, 255, 0.1);
   --color-nav-link: #e2e8f0;
-  --color-hover: #3b5a1f;
+  --color-hover: rgb(42,142,172);
   --color-shop-btn-bg: #ffffff;
-  --color-shop-btn-hover: rgb(75, 113, 42);
+  --color-shop-btn-hover: rgb(42, 142, 172);
   --color-shop-btn-text: #000000;
   --color-shop-btn-shadow: rgba(0, 0, 0, 0.4);
 

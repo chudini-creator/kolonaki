@@ -85,9 +85,6 @@ function ProductGridCard({ product }) {
     >
 
       <article className="galleryCard">
-        <div className="cardWatermark" aria-hidden="true">
-          {product.watermark}
-        </div>
 
         <div className="cardHeader">
           <div className="cardHeaderLeft">
