@@ -1,0 +1,288 @@
+/* === WRAPPER === */
+.psWrapper {
+  width: 100%;
+}
+
+/* === SECTION — STICKY STACK === */
+.psSection {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  background: rgb(var(--main-color));
+}
+
+.psSection:not(:first-child) {
+  box-shadow: 0 -40px 80px rgba(0, 0, 0, 0.22), 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.psSectionInner {
+  display: flex;
+  min-height: 100vh;
+}
+
+.psRowNormal {
+  flex-direction: row;
+}
+
+.psRowReverse {
+  flex-direction: row-reverse;
+}
+
+/* === IMAGE SIDE === */
+.psImgSide {
+  width: 46%;
+  flex-shrink: 0;
+  background: rgb(var(--secondary-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s ease 0.1s,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.psEntered .psImgSide {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.psImgNumber {
+  position: absolute;
+  bottom: -20px;
+  font-size: 18rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.035);
+  user-select: none;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.psEven .psImgNumber {
+  right: -16px;
+  left: auto;
+}
+
+.psOdd .psImgNumber {
+  left: -16px;
+  right: auto;
+}
+
+.psImg {
+  max-height: 62%;
+  max-width: 68%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 64px rgba(0, 0, 0, 0.35));
+  will-change: transform;
+}
+
+/* === TEXT SIDE === */
+.psTextSide {
+  flex: 1;
+  background: rgb(var(--main-color));
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.psEven .psTextSide {
+  justify-content: flex-start;
+}
+
+.psOdd .psTextSide {
+  justify-content: flex-end;
+}
+
+.psTextInner {
+  max-width: 580px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.psEven .psTextInner {
+  padding: 80px 80px 80px 64px;
+}
+
+.psOdd .psTextInner {
+  padding: 80px 64px 80px 80px;
+}
+
+/* === TYPOGRAPHY === */
+.psVariety {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: rgb(var(--secondary-color));
+  margin-bottom: 14px;
+}
+
+.psName {
+  font-size: clamp(1.9rem, 3vw, 2.9rem);
+  font-weight: 800;
+  color: rgb(var(--accent-color));
+  margin: 0 0 18px;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+}
+
+.psTagline {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(var(--accent-color), 0.5);
+  margin: 0 0 28px;
+  line-height: 1.55;
+}
+
+.psDesc {
+  font-size: 0.94rem;
+  line-height: 1.8;
+  color: rgba(var(--accent-color), 0.7);
+  margin: 0 0 32px;
+}
+
+/* === TASTING NOTES === */
+.psNotes {
+  margin-bottom: 32px;
+}
+
+.psNotesLabel {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(var(--accent-color), 0.32);
+  margin-bottom: 8px;
+}
+
+.psNotesList {
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: rgb(var(--accent-color));
+  margin: 0;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+}
+
+/* === META ROW === */
+.psMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(var(--accent-color), 0.4);
+  padding-top: 26px;
+  border-top: 1px solid rgba(var(--accent-color), 0.09);
+}
+
+.psMetaSep {
+  color: rgba(var(--secondary-color), 0.55);
+  font-size: 0.85rem;
+}
+
+/* === SCROLL ANIMATIONS === */
+.psAnimate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s ease var(--d, 0s),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+}
+
+.psVisible {
+  opacity: 1;
+  transform: none;
+}
+
+/* === RESPONSIVE === */
+@media screen and (max-width: 960px) {
+  .psSection {
+    position: static;
+    box-shadow: none;
+  }
+
+  .psSection:not(:first-child) {
+    box-shadow: none;
+    border-top: 1px solid rgba(var(--accent-color), 0.07);
+  }
+
+  .psRowNormal,
+  .psRowReverse {
+    flex-direction: column;
+  }
+
+  .psImgSide {
+    width: 100%;
+    min-height: 380px;
+    flex-shrink: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .psImg {
+    max-height: 260px;
+    max-width: 55%;
+    transform: none !important;
+  }
+
+  .psImgNumber {
+    font-size: 11rem;
+    bottom: -12px;
+    right: -10px;
+    left: auto;
+    transform: none !important;
+  }
+
+  .psTextSide {
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .psEven .psTextSide,
+  .psOdd .psTextSide {
+    justify-content: flex-start;
+  }
+
+  .psEven .psTextInner,
+  .psOdd .psTextInner {
+    padding: 52px 36px 60px;
+    max-width: 100%;
+  }
+
+  .psAnimate {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .psImgSide {
+    min-height: 310px;
+  }
+
+  .psImg {
+    max-height: 220px;
+    max-width: 60%;
+  }
+
+  .psName {
+    font-size: 1.75rem;
+  }
+
+  .psEven .psTextInner,
+  .psOdd .psTextInner {
+    padding: 40px 22px 52px;
+  }
+}

@@ -8,7 +8,7 @@ const heroSlides = [
     tagline: "AUTENTYCZNA KUCHNIA GRECKA",
     title: "KOLONAKI",
     subtitle: "Tradycyjna oliwa",
-    ctaText: "Odkryj menu",
+    ctaText: "Zobacz produkty",
     ctaLink: "/products",
     secondaryCtaText: "Nasza historia",
     secondaryCtaLink: "/story"
@@ -16,9 +16,9 @@ const heroSlides = [
   {
     image: "/img/hero-2.jpg",
     tagline: "ŚRÓDZIEMNOMORSKI KLIMAT",
-    title: "POCZUJ KLIMAT ATEN",
-    subtitle: "Wyjątkowa atmosfera",
-    ctaText: "Zarezerwuj stolik",
+    title: "POCZUJ KLIMAT ATEN WE WŁASNYM DOMU",
+    subtitle: "Wyjątkowe produkty",
+    ctaText: "Skontaktuj się z nami",
     ctaLink: "/contact",
     secondaryCtaText: "O nas",
     secondaryCtaLink: "/about"
@@ -26,7 +26,7 @@ const heroSlides = [
   {
     image: "/img/hero-3.webp",
     tagline: "TRADYCYJNE RECEPTURY",
-    title: "SMAKI Z OLIWNEGO GAJU",
+    title: "OLIWNA TRADYCJA",
     subtitle: "Oryginalne greckie produkty, oliwa tłoczona na zimno.",
     ctaText: "Przejdź do sklepu",
     ctaLink: "/shop",

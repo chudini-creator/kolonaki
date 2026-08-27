@@ -1,0 +1,72 @@
+.productsPage {
+  min-height: 100vh;
+}
+
+/* === PAGE HERO === */
+.productsPageHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 110px 24px 80px;
+  background: rgb(var(--main-color));
+  position: relative;
+  overflow: hidden;
+}
+
+.productsPageTitle {
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  color: rgb(var(--secondary-color));
+  margin: 0 0 20px;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.productsPageSubtitle {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(var(--accent-color), 1);
+  max-width: 560px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.productsScrollIndicator {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productsScrollLine {
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--secondary-color)),
+    rgba(var(--secondary-color), 0)
+  );
+  animation: productsLineGrow 2s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes productsLineGrow {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .productsPageHero {
+    padding: 90px 20px 60px;
+  }
+}

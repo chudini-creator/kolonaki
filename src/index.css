@@ -1,12 +1,12 @@
 :root {
-  --secondary-color: 75, 113, 42; 
+  --secondary-color: 42, 142, 172; 
   --main-color: 255, 255, 235;
   --accent-color: 15, 23, 42;
   --text-white: #ffffff;
   --background: rgb(255,255,235);
   --color-header-border: rgba(255, 255, 255, 0.1);
   --color-nav-link: #e2e8f0;
-  --color-hover: #4b712a;
+  --color-hover: #3b5a1f;
   --color-shop-btn-bg: #ffffff;
   --color-shop-btn-hover: rgb(75, 113, 42);
   --color-shop-btn-text: #000000;
