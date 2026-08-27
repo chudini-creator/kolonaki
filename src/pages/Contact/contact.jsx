@@ -277,28 +277,6 @@ function Contact() {
           <div className="contactSideContent">
             
             <div className="quickContactGrid">
-              
-              <div className="contactCardItem">
-                <div className="cardIconWrap">
-                  <Phone size={22} />
-                </div>
-                <div className="cardTextWrap">
-                  <span className="cardMiniLabel">Infolinia i zamówienia</span>
-                  <a href="tel:+48605890987" className="cardMainLink">
-                    +48 605 890 987
-                  </a>
-                </div>
-                <button
-                  type="button"
-                  className="copyActionBtn"
-                  onClick={() => handleCopy("+48605890987", "phone")}
-                  aria-label="Kopiuj numer telefonu"
-                  title="Kopiuj numer"
-                >
-                  {copiedField === "phone" ? <Check size={16} className="copiedCheck" /> : <Copy size={16} />}
-                </button>
-              </div>
-
               <div className="contactCardItem">
                 <div className="cardIconWrap">
                   <Mail size={22} />
@@ -319,49 +297,7 @@ function Contact() {
                   {copiedField === "email" ? <Check size={16} className="copiedCheck" /> : <Copy size={16} />}
                 </button>
               </div>
-
-              <div className="contactCardItem addressCard">
-                <div className="cardIconWrap">
-                  <MapPin size={22} />
-                </div>
-                <div className="cardTextWrap">
-                  <span className="cardMiniLabel">Siedziba</span>
-                  <span className="cardAddressText">
-                    ul. Tymienieckiego 24C, 90-349 Łódź
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className="copyActionBtn"
-                  onClick={() => handleCopy("ul. Tymienieckiego 24C, 90-349 Łódź", "address")}
-                  aria-label="Kopiuj adres"
-                  title="Kopiuj adres"
-                >
-                  {copiedField === "address" ? <Check size={16} className="copiedCheck" /> : <Copy size={16} />}
-                </button>
-              </div>
-
             </div>
-
-            <div className="styledMapWrapper">
-              <div className="mapFloatingBadge">
-                <span className="mapPinPulse" />
-                <div className="mapBadgeText">
-                  <strong>Kolonaki</strong>
-                  <span>Łódź, ul. Tymienieckiego 24C</span>
-                </div>
-              </div>
-
-              <iframe
-                title="Lokalizacja siedziby Kolonaki"
-                width="100%"
-                height="280"
-                src="https://www.openstreetmap.org/export/embed?bbox=19.468932151794437%2C51.75223428623943%2C19.486398696899418%2C51.7580521536215&amp;layer=mapnik"
-                className="mapIframe"
-                loading="lazy"
-              />
-            </div>
-
           </div>
 
         </section>
