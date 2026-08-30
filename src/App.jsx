@@ -7,6 +7,7 @@ import Home from './pages/Home/home';
 import Shop from './pages/Shop/shop';
 import Contact from './pages/Contact/contact';
 import Products from './pages/Products/products';
+import History from './pages/History/history';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/sklep" element={<Shop />} />
               <Route path="/produkty" element={<Products />} />
+              <Route path="/historia" element={<History />} />
               <Route path="/kontakt" element={<Contact />} />
             </Routes>
           </main>
