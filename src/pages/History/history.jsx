@@ -11,6 +11,7 @@ const CHAPTERS = [
     description:
       "Początkiem każdej butelki jest gaj. Rodzina Iatridis uprawia tu oliwki od pokoleń — wśród drzew liczących sobie około 150 lat, w górskiej Doliana na Peloponezie.",
     keywords: ["150-letnie drzewa", "Własna uprawa", "Pełna kontrola surowca"],
+    image: "/img/hero-bg.jpg",
   },
   {
     id: "selekcja",
@@ -20,6 +21,7 @@ const CHAPTERS = [
     description:
       "Nie wszystkie oliwki zasługują na tę samą butelkę. Każda partia selekcjonowana jest według odmiany, momentu zbioru i oczekiwanego profilu sensorycznego — decyzje podejmowane jeszcze w gaju.",
     keywords: ["Dwie odmiany", "Profil sensoryczny", "Każda partia wyjątkowa"],
+    image: "/img/hero-3.webp",
   },
   {
     id: "zbior",
@@ -29,6 +31,7 @@ const CHAPTERS = [
     description:
       "Wczesny zbiór to świadomy wybór. Oliwki zbierane przed pełną dojrzałością zawierają więcej polifenoli. Iatridis Estate rezygnuje z pojazdów spalinowych — żeby żaden kontakt ze spalinami nie naruszył czystości owoców.",
     keywords: ["Wczesny zbiór", "Zero spalin", "Czystość sensoryczna"],
+    image: "/img/hero-2.jpg",
   },
   {
     id: "tlocznia",
@@ -38,6 +41,7 @@ const CHAPTERS = [
     description:
       "Własna tłocznia, kilka godzin od zbioru do tłoczenia na zimno. Każda odmiana na osobnej linii — przed kolejną partią cała linia produkcyjna jest dokładnie czyszczona. Zero przypadkowych mieszanek.",
     keywords: ["Własna tłocznia", "Zimne tłoczenie ≤27°C", "Osobna linia"],
+    image: "/img/hero.jpg",
   },
   {
     id: "oliwa",
@@ -47,6 +51,7 @@ const CHAPTERS = [
     description:
       "W butelce zamknięty jest cały ten proces. Wyselekcjonowane partie trafiają do limitowanych edycji z pełną identyfikacją zbioru. Każda butelka to wyraz troski o każdy szczegół.",
     keywords: ["Limitowane edycje", "Identyfikacja zbioru", "Bez kompromisów"],
+    image: "/img/Produkty/Koroneiko.webp",
   },
 ];
 
@@ -105,45 +110,57 @@ function History() {
               className={`chSection ${isVisited ? "chActive" : ""}`}
               style={{ zIndex: i + 1 }}
             >
-              <span className="chBigNumber" aria-hidden="true">
-                {chapter.step}
-              </span>
+              <div className="chLeft">
+                <span className="chBigNumber" aria-hidden="true">
+                  {chapter.step}
+                </span>
 
-              <div className="chContent">
-                <span className="chEyebrow">{chapter.subtitle}</span>
-                <h2 className="chTitle">{chapter.title}</h2>
-                <p className="chDesc">{chapter.description}</p>
-                <div className="chKeywords">
-                  {chapter.keywords.map((kw, idx) => (
-                    <React.Fragment key={idx}>
-                      <span className="chKeyword">{kw}</span>
-                      {idx < chapter.keywords.length - 1 && (
-                        <span className="chKeywordSep" aria-hidden="true">·</span>
-                      )}
-                    </React.Fragment>
-                  ))}
+                <div className="chContent">
+                  <span className="chEyebrow">{chapter.subtitle}</span>
+                  <h2 className="chTitle">{chapter.title}</h2>
+                  <p className="chDesc">{chapter.description}</p>
+                  <div className="chKeywords">
+                    {chapter.keywords.map((kw, idx) => (
+                      <React.Fragment key={idx}>
+                        <span className="chKeyword">{kw}</span>
+                        {idx < chapter.keywords.length - 1 && (
+                          <span className="chKeywordSep" aria-hidden="true">·</span>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="chBottom">
+                  <div className="chDots">
+                    {CHAPTERS.map((_, dotIdx) => (
+                      <button
+                        key={dotIdx}
+                        className={`chDot ${activeIndex === dotIdx ? "chDotActive" : ""}`}
+                        onClick={() => scrollToChapter(dotIdx)}
+                        aria-label={`Przejdź do rozdziału ${dotIdx + 1}: ${CHAPTERS[dotIdx].title}`}
+                      />
+                    ))}
+                  </div>
+                  <div className="chProgress" role="progressbar" aria-valuenow={activeIndex + 1} aria-valuemax={CHAPTERS.length}>
+                    <div className="chProgressFill" style={{ width: progressWidth }} />
+                  </div>
+                  <span className="chCounter" aria-live="polite">
+                    {String(activeIndex + 1).padStart(2, "0")}
+                    <span className="chCounterSep">/</span>
+                    {String(CHAPTERS.length).padStart(2, "0")}
+                  </span>
                 </div>
               </div>
 
-              <div className="chBottom">
-                <div className="chDots">
-                  {CHAPTERS.map((_, dotIdx) => (
-                    <button
-                      key={dotIdx}
-                      className={`chDot ${activeIndex === dotIdx ? "chDotActive" : ""}`}
-                      onClick={() => scrollToChapter(dotIdx)}
-                      aria-label={`Przejdź do rozdziału ${dotIdx + 1}: ${CHAPTERS[dotIdx].title}`}
-                    />
-                  ))}
-                </div>
-                <div className="chProgress" role="progressbar" aria-valuenow={activeIndex + 1} aria-valuemax={CHAPTERS.length}>
-                  <div className="chProgressFill" style={{ width: progressWidth }} />
-                </div>
-                <span className="chCounter" aria-live="polite">
-                  {String(activeIndex + 1).padStart(2, "0")}
-                  <span className="chCounterSep">/</span>
-                  {String(CHAPTERS.length).padStart(2, "0")}
-                </span>
+              <div className="chRight">
+                <img
+                  src={chapter.image}
+                  alt=""
+                  className="chRightImg"
+                  loading="lazy"
+                  aria-hidden="true"
+                />
               </div>
             </section>
           );
