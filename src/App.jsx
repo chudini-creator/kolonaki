@@ -9,28 +9,33 @@ import Contact from './pages/Contact/contact';
 import Products from './pages/Products/products';
 import History from './pages/History/history';
 import About from './pages/About/about';
+import { CartProvider } from './context/CartContext';
+import CartBarAndModal from './components/cart/cartBarAndModal';
 
 
 function App() {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <div className="App">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/o-nas" element={<About />} />
-              <Route path="/sklep" element={<Shop />} />
-              <Route path="/produkty" element={<Products />} />
-              <Route path="/historia" element={<History />} />
-              <Route path="/kontakt" element={<Contact />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <div className="App">
+            <Header />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/o-nas" element={<About />} />
+                <Route path="/sklep" element={<Shop />} />
+                <Route path="/produkty" element={<Products />} />
+                <Route path="/historia" element={<History />} />
+                <Route path="/kontakt" element={<Contact />} />
+              </Routes>
+            </main>
+            <Footer />
+            <CartBarAndModal />
+          </div>
+        </BrowserRouter>
+      </CartProvider>
     </HelmetProvider>
   )
 }

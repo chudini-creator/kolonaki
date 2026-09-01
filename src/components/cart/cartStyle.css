@@ -1,0 +1,426 @@
+.floatingCartBar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 990;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 14px 12px 20px;
+  background: rgb(var(--secondary-color));
+  border: 1px solid rgba(var(--accent-color), 0.35);
+  border-radius: 50px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.floatingCartBar.bounce {
+  animation: cartBarBounce 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes cartBarBounce {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.05); }
+}
+
+.cartBarInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.cartBarBadge {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(var(--main-color), 0.2);
+  color: rgb(var(--accent-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartBarCount {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: rgb(var(--secondary-color));
+  color: var(--text-white);
+  font-size: 0.7rem;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
+.cartBarText {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartBarTitle {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cartBarPrice {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-white);
+}
+
+.cartBarOpenBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: rgb(var(--secondary-color));
+  color: var(--text-white);
+  border: none;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cartBarOpenBtn:hover {
+  background: var(--color-hover);
+  transform: translateY(-1px);
+}
+
+.cartModalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cartModalContainer {
+  width: 100%;
+  max-width: 580px;
+  max-height: 88vh;
+  background: rgb(var(--main-color));
+  border: 1px solid rgba(var(--secondary-color), 0.25);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cartModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  border-bottom: 1px solid rgba(var(--accent-color), 0.08);
+}
+
+.cartModalTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgb(var(--accent-color));
+}
+
+.cartModalHeaderIcon {
+  color: rgb(var(--secondary-color));
+}
+
+.cartModalHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cartModalCloseBtn {
+  background: transparent;
+  border: none;
+  color: rgba(var(--accent-color), 0.5);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.cartModalCloseBtn:hover {
+  color: rgb(var(--accent-color));
+  background: rgba(var(--accent-color), 0.06);
+}
+
+.cartModalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 28px;
+}
+
+.emptyCartState {
+  padding: 50px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyCartIcon {
+  color: rgba(var(--accent-color), 0.25);
+  margin-bottom: 16px;
+}
+
+.emptyCartState h4 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: rgb(var(--accent-color));
+  font-weight: 700;
+}
+
+.emptyCartState p {
+  margin: 0 0 24px;
+  font-size: 0.9rem;
+  color: rgba(var(--accent-color), 0.6);
+  max-width: 320px;
+}
+
+.emptyCartBtn {
+  padding: 12px 26px;
+  background: rgb(var(--secondary-color));
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--button-border-radius);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cartItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cartItemRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: rgba(var(--accent-color), 0.03);
+  border: 1px solid rgba(var(--accent-color), 0.06);
+  border-radius: 14px;
+}
+
+.cartItemImageWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: rgba(var(--accent-color), 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cartItemImg {
+  max-height: 54px;
+  object-fit: contain;
+}
+
+.cartItemDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cartItemVariety {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgb(var(--secondary-color));
+  letter-spacing: 0.05em;
+}
+
+.cartItemName {
+  margin: 2px 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+}
+
+.cartItemUnitPrice {
+  font-size: 0.82rem;
+  color: rgba(var(--accent-color), 0.55);
+}
+
+.cartItemActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cartItemQtyPicker {
+  display: flex;
+  align-items: center;
+  background: rgba(var(--accent-color), 0.06);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.cartQtyBtn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: rgb(var(--accent-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+
+  transition: background 0.2s ease;
+}
+
+.cartQtyBtn:hover {
+  background: rgba(var(--accent-color), 0.1);
+}
+
+.cartQtyNum {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+  padding: 0 8px;
+}
+
+.cartItemSubtotal {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgb(var(--accent-color));
+  min-width: 70px;
+  text-align: right;
+}
+
+.cartItemRemoveBtn {
+  background: transparent;
+  border: none;
+  color: rgba(var(--accent-color), 0.35);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+
+  transition: color 0.2s ease;
+}
+
+.cartItemRemoveBtn:hover {
+  color: rgb(220, 38, 38);
+}
+
+.cartModalFooter {
+  padding: 22px 28px;
+  border-top: 1px solid rgba(var(--accent-color), 0.08);
+  background: rgba(var(--accent-color), 0.02);
+}
+
+.cartSummaryRows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: rgba(var(--accent-color), 0.7);
+}
+
+.totalRow {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: rgb(var(--accent-color));
+  border-top: 1px solid rgba(var(--accent-color), 0.08);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.totalPriceVal {
+  color: rgb(var(--secondary-color));
+}
+
+.checkoutBtn {
+  width: 100%;
+  padding: 16px;
+  background: rgb(var(--secondary-color));
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--button-border-radius);
+  font-size: 0.98rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.checkoutBtn:hover {
+  background: var(--color-hover);
+  transform: translateY(-1px);
+}
+
+@media screen and (max-width: 640px) {
+  .floatingCartBar {
+    width: calc(100% - 32px);
+    justify-content: space-between;
+    bottom: 16px;
+  }
+
+  .cartModalContainer {
+    max-height: 92vh;
+    border-radius: 16px;
+  }
+
+  .cartItemRow {
+    flex-wrap: wrap;
+  }
+
+  .cartItemActions {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid rgba(var(--accent-color), 0.05);
+  }
+}

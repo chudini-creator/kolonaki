@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Droplet, Award, Sparkles, ShoppingBag, Check, Plus, Minus, Truck } from "lucide-react";
+import { useCart } from "../../context/CartContext";
 import "./productsShowcaseStyle.css";
 
 const PRODUCTS_DATA = [
@@ -90,6 +91,8 @@ const PRODUCTS_DATA = [
 ];
 
 function ProductsShowcase({ title, subtitle, showHeader = true }) {
+  const { addToCart } = useCart();
+
   const [quantities, setQuantities] = useState({
     "koroneiki-classic": 1,
     "koroneiki-reserve": 1,
@@ -107,6 +110,8 @@ function ProductsShowcase({ title, subtitle, showHeader = true }) {
   };
 
   const handleAddToCart = (product) => {
+    const currentQty = quantities[product.id] || 1;
+    addToCart(product, currentQty);
     setAddedAnimation((prev) => ({ ...prev, [product.id]: true }));
     setTimeout(() => {
       setAddedAnimation((prev) => ({ ...prev, [product.id]: false }));
