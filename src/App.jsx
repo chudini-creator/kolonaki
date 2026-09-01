@@ -8,6 +8,7 @@ import Shop from './pages/Shop/shop';
 import Contact from './pages/Contact/contact';
 import Products from './pages/Products/products';
 import History from './pages/History/history';
+import About from './pages/About/about';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/o-nas" element={<About />} />
               <Route path="/sklep" element={<Shop />} />
               <Route path="/produkty" element={<Products />} />
               <Route path="/historia" element={<History />} />
