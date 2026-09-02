@@ -1,106 +1,164 @@
-import React, { useState } from "react";
-import { Droplet, Award, Sparkles, ShoppingBag, Check, Plus, Minus, Truck } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ShoppingBag, Check, Plus, Minus} from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import "./productsShowcaseStyle.css";
 
-const PRODUCTS_DATA = [
+const WP_GRAPHQL_URL = "https://kolonaki.pl/graphql";
+
+const LOCAL_PRODUCTS_META = [
   {
-    id: "koroneiki-classic",
-    name: "Oliwa Koroneiki Extra Virgin",
-    edition: "Butelka 500 ml",
-    variety: "Odmiana Koroneiki",
-    badge: "Bestseller • Złoty Medal",
-    price: 69,
-    priceFormatted: "69,00 zł",
-    unitPrice: "138,00 zł / 1 l",
-    tagline: "Intensywna, wyrazista i bogata w cenne polifenole",
-    description: "Królowa greckich oliwek z regionu Peloponezu. Charakteryzuje się intensywnym, trawiastym bukietem aromatycznym i przyjemnie pieprznym finiszem.",
-    image: "/img/Produkty/Koroneiko.webp",
-    acidity: "< 0.3%",
-    harvest: "Listopad – Grudzień",
-    origin: "Peloponez, Grecja",
-    tastingNotes: ["Świeża trawa", "Zielony pieprz", "Karczoch", "Dzika oliwka"],
-    intensity: 90,
-    fruitiness: 85,
-    bitterness: 75,
-    pairings: "Dojrzałe pomidory, carpaccio, pieczywo na zakwasie, grillowane mięsa i sałatki greckie."
-  },
-  {
-    id: "koroneiki-reserve",
-    name: "Oliwa Koroneiki Reserve",
-    edition: "Edycja Prezentowa • Tuba 500 ml",
-    variety: "Odmiana Koroneiki • Single Estate",
-    badge: "Edycja Kolekcjonerska",
-    price: 89,
-    priceFormatted: "89,00 zł",
-    unitPrice: "178,00 zł / 1 l",
-    tagline: "Wczesny zbiór z najstarszych drzew oliwnych w tubie ozdobnej",
-    description: "Limitowana edycja z pojedynczego gaju oliwnego. Tłoczona z wczesnych, zielonych oliwek (Agoureleo) o maksymalnym stężeniu antyoksydantów.",
-    image: "/img/Produkty/Koroneiko-2.webp",
-    acidity: "< 0.24%",
-    harvest: "Październik (Wczesny Zbiór)",
-    origin: "Single Estate • Peloponez",
-    tastingNotes: ["Agoureleo", "Liść pomidora", "Młody migdał", "Dziki tymianek"],
-    intensity: 95,
-    fruitiness: 90,
-    bitterness: 80,
-    pairings: "Do degustacji na surowo, steków wołowych, twardych serów kozich i pieczonych warzyw."
-  },
-  {
-    id: "manaki-classic",
-    name: "Oliwa Manaki Extra Virgin",
+    id: "manaki-early-harvest",
+    slug: "manaki-early-harvest",
+    name: "Manaki Early Harvest",
     edition: "Butelka 500 ml",
     variety: "Odmiana Manaki",
-    badge: "Aksamitna • Łagodna",
-    price: 69,
-    priceFormatted: "69,00 zł",
-    unitPrice: "138,00 zł / 1 l",
-    tagline: "Aksamitna, łagodna z nutami dojrzałych owoców i migdałów",
-    description: "Rzadka i ceniona odmiana z regionu Argolidy. Wyróżnia się maślaną konsystencją, subtelną słodyczą dojrzałych jabłek i całkowitym brakiem cierpkości.",
-    image: "/img/Produkty/Manaki.webp",
-    acidity: "< 0.28%",
-    harvest: "Grudzień – Styczeń",
-    origin: "Argolida, Grecja",
-    tastingNotes: ["Dojrzałe jabłko", "Słodki migdał", "Masło ziołowe", "Kwiaty cytrusów"],
-    intensity: 60,
-    fruitiness: 95,
-    bitterness: 35,
-    pairings: "Świeże sery feta i manouri, ryby, owoce morza, delikatne zupy krem i pieczywo pita."
-  },
-  {
-    id: "manaki-reserve",
-    name: "Oliwa Manaki Reserve",
-    edition: "Edycja Prezentowa • Tuba 500 ml",
-    variety: "Odmiana Manaki • Single Estate",
     badge: "Limitowana Edycja",
-    price: 89,
-    priceFormatted: "89,00 zł",
-    unitPrice: "178,00 zł / 1 l",
-    tagline: "Ekskluzywne wydanie w ozdobnej tubie kolekcjonerskiej",
-    description: "Wyselekcjonowane zbiory z rodzinnego gaju w Argolidzie. Aksamitna struktura i urzekający, kwiatowo-owocowy bukiet dla koneserów.",
-    image: "/img/Produkty/Manaki-2.webp",
+    tagline: "Rzadsza odmiana w wersji wczesnego zbioru",
+    description: "Wyselekcjonowane wczesne zbiory z rodzinnego gaju. Aksamitna struktura i urzekający, owocowy bukiet dla koneserów.",
+    defaultImage: "/img/Produkty/Manaki-2.webp",
     acidity: "< 0.22%",
-    harvest: "Grudzień (Selekcja Ręczna)",
-    origin: "Single Estate • Argolida",
-    tastingNotes: ["Kremowy migdał", "Morela", "Kwiat pomarańczy", "Lekkie zioła"],
+    harvest: "Październik",
+    origin: "Argolida, Grecja",
+    tastingNotes: ["Zielone migdały", "Banan", "Rumianek"],
     intensity: 65,
     fruitiness: 98,
+    bitterness: 40,
+    pairings: "Białe ryby, carpaccio z przegrzebków, sałatki."
+  },
+  {
+    id: "koroneiko-early-harvest",
+    slug: "koroneiko-early-harvest",
+    name: "Koroneiko Early Harvest",
+    edition: "Butelka 500 ml",
+    variety: "Odmiana Koroneiki",
+    badge: "Bestseller",
+    tagline: "Klasyczna grecka pikantność wczesnego zbioru",
+    description: "Królowa greckich oliwek. Charakteryzuje się intensywnym, trawiastym bukietem aromatycznym i przyjemnie pieprznym finiszem.",
+    defaultImage: "/img/Produkty/Koroneiko-2.webp",
+    acidity: "< 0.25%",
+    harvest: "Październik - Listopad",
+    origin: "Peloponez, Grecja",
+    tastingNotes: ["Świeża trawa", "Karczoch", "Skórka pomidora", "Orzech Włoski"],
+    intensity: 85,
+    fruitiness: 80,
+    bitterness: 75,
+    pairings: "Dojrzałe pomidory, pieczywo na zakwasie, grillowane mięsa."
+  },
+  {
+    id: "manaki",
+    slug: "manaki",
+    name: "Manaki",
+    edition: "Butelka 750 ml",
+    variety: "Odmiana Manaki",
+    badge: "Aksamitna • Łagodna",
+    tagline: "Aksamitna, łagodna z nutami dojrzałych owoców",
+    description: "Rzadka i ceniona odmiana. Wyróżnia się maślaną konsystencją, subtelną słodyczą jabłek i całkowitym brakiem cierpkości.",
+    defaultImage: "/img/Produkty/Manaki.webp",
+    acidity: "< 0.28%",
+    harvest: "Grudzień",
+    origin: "Argolida, Grecja",
+    tastingNotes: ["Owoce tropikalne", "Czerwone jabłko"],
+    intensity: 50,
+    fruitiness: 90,
     bitterness: 30,
-    pairings: "Do wykwintnych deserów cytrusowych, białych ryb, carpaccio z przegrzebków i sałatek."
-  }
+    pairings: "Świeże sery feta, ryby, delikatne zupy krem."
+  },
+  {
+    id: "september-harvest",
+    slug: "september-harvest",
+    name: "September Harvest",
+    edition: "Edycja Prezentowa",
+    variety: "Odmiana Koroneiki • Wczesny Zbiór",
+    badge: "Wczesny Zbiór",
+    tagline: "Najwcześniejsze zbiory, maksymalna ilość polifenoli",
+    description: "Tłoczona z jeszcze niedojrzałych, mocno zielonych oliwek we wrześniu. Ekstremalnie bogata w antyoksydanty.",
+    defaultImage: "/img/Produkty/Koroneiko.webp",
+    acidity: "< 0.20%",
+    harvest: "Wrzesień",
+    origin: "Peloponez, Grecja",
+    tastingNotes: ["Świeża trawa", "Pomidor", "Migdały", "Jabłko", "Banan", "Owoce tropikalne"],
+    intensity: 95,
+    fruitiness: 85,
+    bitterness: 85,
+    pairings: "Do picia na surowo w celach zdrowotnych, mocne czerwone mięsa."
+  },
 ];
 
-function ProductsShowcase({ title, subtitle, showHeader = true }) {
+function ProductsShowcase() {
   const { addToCart } = useCart();
-
-  const [quantities, setQuantities] = useState({
-    "koroneiki-classic": 1,
-    "koroneiki-reserve": 1,
-    "manaki-classic": 1,
-    "manaki-reserve": 1
-  });
-
+  const [products, setProducts] = useState(LOCAL_PRODUCTS_META);
+  const [loading, setLoading] = useState(true);
+  const [quantities, setQuantities] = useState({});
   const [addedAnimation, setAddedAnimation] = useState({});
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await fetch(WP_GRAPHQL_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: `
+              {
+                products {
+                  nodes {
+                    id
+                    databaseId
+                    name
+                    slug
+                    ... on SimpleProduct {
+                      price
+                    }
+                    image {
+                      sourceUrl
+                    }
+                  }
+                }
+              }
+            `
+          })
+        });
+        
+        const json = await res.json();
+        const wpProducts = json.data?.products?.nodes || [];
+
+        const mergedProducts = LOCAL_PRODUCTS_META.map(localMeta => {
+          const wpMatch = wpProducts.find(wp => wp.slug === localMeta.slug);
+          if (wpMatch) {
+            const rawPrice = Number(
+              wpMatch.price
+                .replace(/&nbsp;/g, "")
+                .replace(/[^0-9,-]+/g, "")
+                .replace(",", ".")
+            );
+
+            return {
+              ...localMeta,
+              wpId: wpMatch.id,
+              wpDatabaseId: wpMatch.databaseId,
+              name: wpMatch.name, 
+              price: rawPrice,
+              priceFormatted: wpMatch.price.replace(/&nbsp;/g, " "),
+              image: wpMatch.image?.sourceUrl || localMeta.defaultImage
+            };
+          }
+          return { ...localMeta, price: 0, priceFormatted: "Brak ceny" };
+        });
+
+        setProducts(mergedProducts);
+        
+        const initialQty = {};
+        mergedProducts.forEach(p => { initialQty[p.id] = 1; });
+        setQuantities(initialQty);
+
+      } catch (error) {
+        console.error("Błąd pobierania produktów z WP:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProducts();
+  }, []);
 
   const handleQuantityChange = (id, delta) => {
     setQuantities((prev) => ({
@@ -111,7 +169,16 @@ function ProductsShowcase({ title, subtitle, showHeader = true }) {
 
   const handleAddToCart = (product) => {
     const currentQty = quantities[product.id] || 1;
-    addToCart(product, currentQty);
+    addToCart({
+      id: product.slug,
+      wpDatabaseId: product.wpDatabaseId,
+      name: product.name,
+      price: product.price,
+      priceFormatted: product.priceFormatted,
+      image: product.image,
+      variety: product.variety
+    }, currentQty);
+    
     setAddedAnimation((prev) => ({ ...prev, [product.id]: true }));
     setTimeout(() => {
       setAddedAnimation((prev) => ({ ...prev, [product.id]: false }));
@@ -121,185 +188,148 @@ function ProductsShowcase({ title, subtitle, showHeader = true }) {
   return (
     <section id="products" className="productsSection" aria-label="Katalog produktów Kolonaki">
       <div className="productsContainer">
+        
+        {loading && (
+          <div style={{ textAlign: "center", padding: "100px 0", color: "rgba(var(--accent-color), 0.5)" }}>
+            Ładowanie produktów z WooCommerce...
+          </div>
+        )}
 
-        <div className="productsGrid">
-          {PRODUCTS_DATA.map((product) => {
-            const currentQty = quantities[product.id] || 1;
-            const isJustAdded = addedAnimation[product.id];
+        {!loading && (
+          <div className="productsGrid">
+            {products.map((product) => {
+              const currentQty = quantities[product.id] || 1;
+              const isJustAdded = addedAnimation[product.id];
 
-            return (
-              <article key={product.id} className="productCard">
-
-                <div className="productImageWrapper">
-                  <div className="productImageGlow" />
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="productImage"
-                    loading="lazy"
-                  />
-                </div>
-
-                <div className="productCardContent">
-                  <div className="productHead">
-                    <span className="productVariety">{product.variety}</span>
-                    <h3 className="productName">{product.name}</h3>
-                    <p className="productTagline">{product.tagline}</p>
+              return (
+                <article key={product.id} className="productCard">
+                  <div className="productImageWrapper">
+                    <div className="productImageGlow" />
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="productImage"
+                      loading="lazy"
+                    />
                   </div>
 
-                  <p className="productDescription">{product.description}</p>
-
-                  {/* Parametry */}
-                  <div className="productSpecsGrid">
-                    <div className="specItem">
-                      <span className="specLabel">Kwasowość:</span>
-                      <span className="specValue">{product.acidity}</span>
-                    </div>
-                    <div className="specItem">
-                      <span className="specLabel">Pochodzenie:</span>
-                      <span className="specValue">{product.origin}</span>
-                    </div>
-                    <div className="specItem">
-                      <span className="specLabel">Zbiór:</span>
-                      <span className="specValue">{product.harvest}</span>
-                    </div>
-                    <div className="specItem">
-                      <span className="specLabel">Tłoczenie:</span>
-                      <span className="specValue">Na zimno (&le; 27&deg;C)</span>
-                    </div>
-                  </div>
-
-                  {/* Profil smakowy */}
-                  <div className="tasteProfileContainer">
-                    <div className="tasteProfileHeader">
-                      <span className="tasteProfileTitle">Profil sensoryczny:</span>
+                  <div className="productCardContent">
+                    <div className="productHead">
+                      <span className="productVariety">{product.variety}</span>
+                      <h3 className="productName">{product.name}</h3>
+                      <p className="productTagline">{product.tagline}</p>
                     </div>
 
-                    <div className="tasteBarRow">
-                      <span className="tasteBarLabel">Owocowość</span>
-                      <div className="tasteBarTrack">
-                        <div className="tasteBarFill" style={{ width: `${product.fruitiness}%` }} />
+                    <p className="productDescription">{product.description}</p>
+
+                    <div className="productSpecsGrid">
+                      <div className="specItem">
+                        <span className="specLabel">Kwasowość:</span>
+                        <span className="specValue">{product.acidity}</span>
                       </div>
-                      <span className="tasteBarPercent">{product.fruitiness}%</span>
-                    </div>
-
-                    <div className="tasteBarRow">
-                      <span className="tasteBarLabel">Intensywność</span>
-                      <div className="tasteBarTrack">
-                        <div className="tasteBarFill" style={{ width: `${product.intensity}%` }} />
+                      <div className="specItem">
+                        <span className="specLabel">Pochodzenie:</span>
+                        <span className="specValue">{product.origin}</span>
                       </div>
-                      <span className="tasteBarPercent">{product.intensity}%</span>
-                    </div>
-
-                    <div className="tasteBarRow">
-                      <span className="tasteBarLabel">Pikantność</span>
-                      <div className="tasteBarTrack">
-                        <div className="tasteBarFill" style={{ width: `${product.bitterness}%` }} />
+                      <div className="specItem">
+                        <span className="specLabel">Zbiór:</span>
+                        <span className="specValue">{product.harvest}</span>
                       </div>
-                      <span className="tasteBarPercent">{product.bitterness}%</span>
-                    </div>
-                  </div>
-
-                  {/* Nuty */}
-                  <div className="tastingNotesWrapper">
-                    <span className="notesHeading">Nuty aromatyczne:</span>
-                    <div className="notesTags">
-                      {product.tastingNotes.map((note, idx) => (
-                        <span key={idx} className="noteTag">
-                          <Check size={12} className="noteCheck" />
-                          {note}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="productPurchaseBlock">
-                    <div className="priceWrapper">
-                      <span className="productPrice">{product.priceFormatted}</span>
-                      <span className="unitPrice">{product.unitPrice}</span>
+                      <div className="specItem">
+                        <span className="specLabel">Tłoczenie:</span>
+                        <span className="specValue">Na zimno (&le; 27&deg;C)</span>
+                      </div>
                     </div>
 
-                    <div className="cartActionRow">
-                      <div className="quantitySelector" aria-label="Wybór ilości">
+                    <div className="tasteProfileContainer">
+                      <div className="tasteProfileHeader">
+                        <span className="tasteProfileTitle">Profil sensoryczny:</span>
+                      </div>
+                      <div className="tasteBarRow">
+                        <span className="tasteBarLabel">Owocowość</span>
+                        <div className="tasteBarTrack">
+                          <div className="tasteBarFill" style={{ width: `${product.fruitiness}%` }} />
+                        </div>
+                        <span className="tasteBarPercent">{product.fruitiness}%</span>
+                      </div>
+                      <div className="tasteBarRow">
+                        <span className="tasteBarLabel">Intensywność</span>
+                        <div className="tasteBarTrack">
+                          <div className="tasteBarFill" style={{ width: `${product.intensity}%` }} />
+                        </div>
+                        <span className="tasteBarPercent">{product.intensity}%</span>
+                      </div>
+                      <div className="tasteBarRow">
+                        <span className="tasteBarLabel">Pikantność</span>
+                        <div className="tasteBarTrack">
+                          <div className="tasteBarFill" style={{ width: `${product.bitterness}%` }} />
+                        </div>
+                        <span className="tasteBarPercent">{product.bitterness}%</span>
+                      </div>
+                    </div>
+
+                    <div className="tastingNotesWrapper">
+                      <span className="notesHeading">Nuty aromatyczne:</span>
+                      <div className="notesTags">
+                        {product.tastingNotes.map((note, idx) => (
+                          <span key={idx} className="noteTag">
+                            <Check size={12} className="noteCheck" />
+                            {note}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="productPurchaseBlock">
+                      <div className="priceWrapper">
+                        <span className="productPrice">{product.priceFormatted}</span>
+                      </div>
+
+                      <div className="cartActionRow">
+                        <div className="quantitySelector" aria-label="Wybór ilości">
+                          <button
+                            type="button"
+                            className="qtyBtn"
+                            onClick={() => handleQuantityChange(product.id, -1)}
+                            disabled={currentQty <= 1}
+                          >
+                            <Minus size={14} />
+                          </button>
+                          <span className="qtyValue">{currentQty}</span>
+                          <button
+                            type="button"
+                            className="qtyBtn"
+                            onClick={() => handleQuantityChange(product.id, 1)}
+                          >
+                            <Plus size={14} />
+                          </button>
+                        </div>
+
                         <button
                           type="button"
-                          className="qtyBtn"
-                          onClick={() => handleQuantityChange(product.id, -1)}
-                          aria-label="Zmniejsz ilość"
-                          disabled={currentQty <= 1}
+                          className={`addToCartBtn ${isJustAdded ? "added" : ""}`}
+                          onClick={() => handleAddToCart(product)}
                         >
-                          <Minus size={14} />
-                        </button>
-                        <span className="qtyValue">{currentQty}</span>
-                        <button
-                          type="button"
-                          className="qtyBtn"
-                          onClick={() => handleQuantityChange(product.id, 1)}
-                          aria-label="Zwiększ ilość"
-                        >
-                          <Plus size={14} />
+                          {isJustAdded ? (
+                            <>
+                              <Check size={18} />
+                              <span>Dodano ({currentQty})!</span>
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingBag size={18} />
+                              <span>Dodaj do koszyka</span>
+                            </>
+                          )}
                         </button>
                       </div>
-
-                      <button
-                        type="button"
-                        className={`addToCartBtn ${isJustAdded ? "added" : ""}`}
-                        onClick={() => handleAddToCart(product)}
-                        aria-label={`Dodaj ${product.name} do koszyka`}
-                      >
-                        {isJustAdded ? (
-                          <>
-                            <Check size={18} />
-                            <span>Dodano ({currentQty})!</span>
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingBag size={18} />
-                            <span>Dodaj do koszyka</span>
-                          </>
-                        )}
-                      </button>
                     </div>
                   </div>
-
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        {/*<div className="trustBadgesBar">
-          <div className="trustItem">
-            <div className="trustIconWrap">
-              <Award size={24} />
-            </div>
-            <div className="trustText">
-              <h4>100% Extra Virgin</h4>
-              <p>Najwyższa kategoria jakości, tłoczona wyłącznie mechanicznie.</p>
-            </div>
+                </article>
+              );
+            })}
           </div>
-
-          <div className="trustItem">
-            <div className="trustIconWrap">
-              <Droplet size={24} />
-            </div>
-            <div className="trustText">
-              <h4>Tłoczenie na zimno (&le; 27&deg;C)</h4>
-              <p>Zachowuje pełnię naturalnych polifenoli, witamin i aromatów.</p>
-            </div>
-          </div>
-
-          <div className="trustItem">
-            <div className="trustIconWrap">
-              <Truck size={24} />
-            </div>
-            <div className="trustText">
-              <h4>Szybka & Bezpieczna Wysyłka</h4>
-              <p>Bezpiecznie pakowane butelki w ekologiczne opakowania ochronne.</p>
-            </div>
-          </div>
-        </div>*/}
-
+        )}
       </div>
     </section>
   );
