@@ -8,11 +8,10 @@
   align-items: center;
   gap: 24px;
   padding: 12px 14px 12px 20px;
-  background: rgb(var(--secondary-color));
-  border: 1px solid rgba(var(--accent-color), 0.35);
+  background: rgb(var(--accent-color));
+  border: 1px solid rgba(var(--secondary-color), 0.35);
   border-radius: 50px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(12px);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
@@ -37,8 +36,8 @@
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: rgba(var(--main-color), 0.2);
-  color: rgb(var(--accent-color));
+  background: rgba(var(--secondary-color), 0.2);
+  color: rgb(var(--secondary-color));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,7 +120,7 @@
 .cartModalContainer {
   width: 100%;
   max-width: 580px;
-  max-height: 88vh;
+  max-height: 90vh;
   background: rgb(var(--main-color));
   border: 1px solid rgba(var(--secondary-color), 0.25);
   border-radius: 20px;
@@ -143,6 +142,7 @@
   justify-content: space-between;
   padding: 22px 28px;
   border-bottom: 1px solid rgba(var(--accent-color), 0.08);
+  flex-shrink: 0;
 }
 
 .cartModalTitleWrap {
@@ -308,7 +308,6 @@
   justify-content: center;
   cursor: pointer;
   border-radius: 6px;
-
   transition: background 0.2s ease;
 }
 
@@ -338,18 +337,277 @@
   cursor: pointer;
   padding: 6px;
   border-radius: 6px;
-
   transition: color 0.2s ease;
+  display: flex;
 }
 
 .cartItemRemoveBtn:hover {
   color: rgb(220, 38, 38);
 }
 
+.shippingSection {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(var(--accent-color), 0.07);
+}
+
+.shippingSectionTitle {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(var(--accent-color), 0.45);
+  margin-bottom: 12px;
+}
+
+.shippingOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shippingOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 14px;
+  background: rgba(var(--accent-color), 0.03);
+  border: 1.5px solid rgba(var(--accent-color), 0.08);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.shippingOption:hover {
+  border-color: rgba(var(--secondary-color), 0.4);
+  background: rgba(var(--secondary-color), 0.04);
+}
+
+.shippingOptionSelected {
+  border-color: rgb(var(--secondary-color));
+  background: rgba(var(--secondary-color), 0.06);
+}
+
+.shippingOptionLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shippingOptionRadio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--accent-color), 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease;
+}
+
+.shippingOptionSelected .shippingOptionRadio {
+  border-color: rgb(var(--secondary-color));
+}
+
+.shippingOptionRadioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgb(var(--secondary-color));
+}
+
+.shippingOptionIcon {
+  color: rgba(var(--accent-color), 0.5);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.shippingOptionSelected .shippingOptionIcon {
+  color: rgb(var(--secondary-color));
+}
+
+.shippingOptionInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.shippingOptionLabel {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+}
+
+.shippingOptionDesc {
+  font-size: 0.76rem;
+  color: rgba(var(--accent-color), 0.5);
+  margin-top: 1px;
+}
+
+.shippingOptionPrice {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+  flex-shrink: 0;
+}
+
+.deliveryDetailBlock {
+  margin-top: 12px;
+  animation: fadeIn 0.25s ease;
+}
+
+.deliveryFormLabel {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(var(--accent-color), 0.4);
+  margin-bottom: 10px;
+}
+
+.selectPaczkomatBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(var(--secondary-color), 0.06);
+  border: 1.5px dashed rgba(var(--secondary-color), 0.4);
+  border-radius: 12px;
+  color: rgb(var(--secondary-color));
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.selectPaczkomatBtn:hover {
+  background: rgba(var(--secondary-color), 0.1);
+  border-color: rgb(var(--secondary-color));
+}
+
+.selectPaczkomatArrow {
+  margin-left: auto;
+}
+
+.selectedPaczkomatRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(var(--secondary-color), 0.06);
+  border: 1px solid rgba(var(--secondary-color), 0.25);
+  border-radius: 12px;
+}
+
+.selectedPaczkomatInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.selectedPaczkomatIcon {
+  color: rgb(var(--secondary-color));
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.selectedPaczkomatCode {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgb(var(--accent-color));
+  letter-spacing: 0.02em;
+}
+
+.selectedPaczkomatAddress {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(var(--accent-color), 0.55);
+  margin-top: 2px;
+}
+
+.changePaczkomatBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: rgb(var(--secondary-color));
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 4px 0;
+  transition: opacity 0.2s ease;
+}
+
+.changePaczkomatBtn:hover {
+  opacity: 0.75;
+}
+
+.recipientForm {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(var(--accent-color), 0.06);
+}
+
+.courierForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.courierRow {
+  display: flex;
+  gap: 8px;
+}
+
+.courierInput {
+  padding: 11px 13px;
+  border: 1.5px solid rgba(var(--accent-color), 0.12);
+  border-radius: 10px;
+  background: rgba(var(--accent-color), 0.03);
+  font-size: 0.88rem;
+  color: rgb(var(--accent-color));
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.courierInput::placeholder {
+  color: rgba(var(--accent-color), 0.35);
+}
+
+.courierInput:focus {
+  border-color: rgb(var(--secondary-color));
+  background: rgba(var(--secondary-color), 0.03);
+}
+
+.courierInputFull {
+  width: 100%;
+}
+
+.courierInputGrow {
+  flex: 1;
+}
+
+.courierInputShort {
+  width: 100px;
+  flex-shrink: 0;
+}
+
 .cartModalFooter {
   padding: 22px 28px;
   border-top: 1px solid rgba(var(--accent-color), 0.08);
   background: rgba(var(--accent-color), 0.02);
+  flex-shrink: 0;
 }
 
 .cartSummaryRows {
@@ -422,5 +680,13 @@
     justify-content: space-between;
     padding-top: 10px;
     border-top: 1px solid rgba(var(--accent-color), 0.05);
+  }
+
+  .courierRow {
+    flex-wrap: wrap;
+  }
+
+  .courierInputShort {
+    width: 100%;
   }
 }

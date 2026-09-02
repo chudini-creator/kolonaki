@@ -4,6 +4,21 @@ const CartContext = createContext();
 
 const CART_STORAGE_KEY = "kolonaki_cart_v1";
 
+export const SHIPPING_OPTIONS = [
+  {
+    id: "paczkomat",
+    label: "Paczkomat InPost",
+    description: "Odbiór w wybranym paczkomacie · 1-2 dni robocze",
+    price: 13.99,
+  },
+  {
+    id: "kurier",
+    label: "Kurier do domu",
+    description: "DPD / InPost · dostawa pod drzwi · 1-2 dni robocze",
+    price: 16.99,
+  },
+];
+
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
     try {
@@ -15,6 +30,23 @@ export function CartProvider({ children }) {
   });
 
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedShippingId, setSelectedShippingId] = useState("paczkomat");
+  const [paczkomatPoint, setPaczkomatPoint] = useState(null);
+  const [paczkomatRecipient, setPaczkomatRecipient] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+  });
+  const [courierAddress, setCourierAddress] = useState({
+    fullName: "",
+    email: "",
+    street: "",
+    buildingNo: "",
+    apartmentNo: "",
+    postalCode: "",
+    city: "",
+    phone: "",
+  });
 
   useEffect(() => {
     try {
@@ -55,16 +87,20 @@ export function CartProvider({ children }) {
     );
   };
 
-  const clearCart = () => {
-    setCart([]);
-  };
+  const clearCart = () => setCart([]);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const totalPrice = cart.reduce((sum, item) => {
-    const rawPrice = typeof item.product.price === "number" ? item.product.price : parseFloat(item.product.price) || 0;
+  const productsTotal = cart.reduce((sum, item) => {
+    const rawPrice = typeof item.product.price === "number"
+      ? item.product.price
+      : parseFloat(item.product.price) || 0;
     return sum + rawPrice * item.quantity;
   }, 0);
+
+  const selectedShipping = SHIPPING_OPTIONS.find((o) => o.id === selectedShippingId) || SHIPPING_OPTIONS[0];
+  const shippingCost = selectedShipping.price;
+  const totalPrice = productsTotal + shippingCost;
 
   return (
     <CartContext.Provider
@@ -77,7 +113,18 @@ export function CartProvider({ children }) {
         updateQuantity,
         clearCart,
         totalItems,
+        productsTotal,
+        shippingCost,
         totalPrice,
+        selectedShippingId,
+        setSelectedShippingId,
+        selectedShipping,
+        paczkomatPoint,
+        setPaczkomatPoint,
+        paczkomatRecipient,
+        setPaczkomatRecipient,
+        courierAddress,
+        setCourierAddress,
       }}
     >
       {children}
