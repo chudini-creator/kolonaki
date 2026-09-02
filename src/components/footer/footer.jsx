@@ -3,29 +3,10 @@ import { Link } from "react-router-dom";
 import {
   Phone,
   Mail,
-  MapPin,
-  ArrowRight,
-  ShieldCheck,
-  Droplet,
-  Sparkles,
-  Check,
-  Truck
 } from "lucide-react";
 import "./footerStyle.css";
 
 function Footer() {
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (!newsletterEmail) return;
-    setIsSubscribed(true);
-    setNewsletterEmail("");
-    setTimeout(() => {
-      setIsSubscribed(false);
-    }, 4000);
-  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -36,7 +17,7 @@ function Footer() {
 
       <div className="footerMainSection">
         <div className="footerMainContainer">
-          
+
           <div className="footerCol brandCol">
             <Link to="/" onClick={scrollToTop} className="footerLogoLink">
               <span className="footerLogo">Kolonaki</span>
@@ -88,23 +69,23 @@ function Footer() {
             <h4 className="footerColTitle">Kolekcja Oliw</h4>
             <ul className="footerLinksList">
               <li>
-                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
-                  Koroneiki Extra Virgin (500 ml)
+                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
+                  Manaki Early Harvest (500 ml)
                 </Link>
               </li>
               <li>
-                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
-                  Koroneiki Reserve Edition (Tuba)
+                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
+                  Koroneiko Early Harvest (500 ml)
                 </Link>
               </li>
               <li>
-                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
-                  Manaki Extra Virgin (500 ml)
+                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
+                  Manaki Selected Harvest (750 ml)
                 </Link>
               </li>
               <li>
-                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
-                  Manaki Reserve Edition (Tuba)
+                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
+                  Manaki September Harvest (500 ml)
                 </Link>
               </li>
             </ul>
@@ -118,18 +99,10 @@ function Footer() {
                 <span>+48 605 890 987</span>
               </a>
 
-              <a href="mailto:kolonaki@kontakt.pl" className="footerContactItem">
+              <a href="mailto:kontakt@kolonaki.pl" className="footerContactItem">
                 <Mail size={18} className="contactIcon" />
-                <span>kolonaki@kontakt.pl</span>
+                <span>kontakt@kolonaki.pl</span>
               </a>
-
-              <div className="footerContactItem addressItem">
-                <MapPin size={18} className="contactIcon" />
-                <div>
-                  <span>ul. Tymienieckiego 24C</span>
-                  <span className="subAddress">90-349 Łódź &bull; Wysyłka cała Polska</span>
-                </div>
-              </div>
 
             </div>
           </div>

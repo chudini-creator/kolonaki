@@ -61,21 +61,45 @@ function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        orderNumber: "",
-        message: ""
+    try {
+      const response = await fetch("https://formspree.io/f/mbgjogwe", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "Temat": inquiryType === "order" ? "Zamówienie i dostawa" : "Współpraca B2B / Gastro",
+          "Imię i nazwisko": formData.name,
+          "Email": formData.email,
+          "Telefon": formData.phone || "Brak",
+          "Nr zamówienia / Nazwa firmy": formData.orderNumber || "Brak",
+          "Wiadomość": formData.message
+        })
       });
-    }, 900);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          orderNumber: "",
+          message: ""
+        });
+      } else {
+        alert("Wystąpił problem z wysłaniem wiadomości. Spróbuj ponownie później.");
+      }
+    } catch (err) {
+      console.error("Błąd wysyłania formularza:", err);
+      alert("Brak połączenia. Sprawdź swoje połączenie internetowe i spróbuj ponownie.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopy = (text, fieldName) => {
@@ -106,9 +130,9 @@ function Contact() {
       />
 
       <div className="contactMainContainer">
-        
+
         <section className="contactGridSection">
-          
+
           <div className="contactFormCard">
             <div className="formHeader">
               <span className="formBadge">Napisz do nas</span>
@@ -275,7 +299,7 @@ function Contact() {
           </div>
 
           <div className="contactSideContent">
-            
+
             <div className="quickContactGrid">
               <div className="contactCardItem">
                 <div className="cardIconWrap">
@@ -283,8 +307,8 @@ function Contact() {
                 </div>
                 <div className="cardTextWrap">
                   <span className="cardMiniLabel">Napisz bezpośrednio</span>
-                  <a href="mailto:kolonaki@kontakt.pl" className="cardMainLink">
-                    kolonaki@kontakt.pl
+                  <a href="mailto:kontakt@kolonaki.pl" className="cardMainLink">
+                    kontakt@kolonaki.pl
                   </a>
                 </div>
                 <button
