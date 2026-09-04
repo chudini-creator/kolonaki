@@ -128,6 +128,7 @@ function ProductsShowcase() {
             const rawPrice = Number(
               wpMatch.price
                 .replace(/&nbsp;/g, "")
+                .replace(/&#160;/g, "")
                 .replace(/[^0-9,-]+/g, "")
                 .replace(",", ".")
             );
@@ -138,7 +139,7 @@ function ProductsShowcase() {
               wpDatabaseId: wpMatch.databaseId,
               name: wpMatch.name,
               price: rawPrice,
-              priceFormatted: wpMatch.price.replace(/&nbsp;/g, " "),
+              priceFormatted: rawPrice.toFixed(2).replace(".", ",") + " zł",
               image: wpMatch.image?.sourceUrl || localMeta.defaultImage
             };
           }

@@ -9,6 +9,7 @@ import Contact from './pages/Contact/contact';
 import Products from './pages/Products/products';
 import History from './pages/History/history';
 import About from './pages/About/about';
+import ThankYou from './pages/ThankYou/thankYou';
 import { CartProvider } from './context/CartContext';
 import CartBarAndModal from './components/cart/cartBarAndModal';
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/produkty" element={<Products />} />
                 <Route path="/historia" element={<History />} />
                 <Route path="/kontakt" element={<Contact />} />
+                <Route path="/dziekujemy" element={<ThankYou />} />
               </Routes>
             </main>
             <Footer />

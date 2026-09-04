@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ShoppingBag, X, Plus, Minus, Trash2, ArrowRight,
   Truck, Package, MapPin, ChevronRight,
@@ -10,9 +11,10 @@ import "./cartStyle.css";
 const SHIPPING_ICONS = { paczkomat: Package, kurier: Truck };
 
 function CartBarAndModal() {
+  const navigate = useNavigate();
   const {
     cart, isCartOpen, setIsCartOpen,
-    removeFromCart, updateQuantity,
+    removeFromCart, updateQuantity, clearCart,
     totalItems, productsTotal, shippingCost, totalPrice,
     selectedShippingId, setSelectedShippingId,
     paczkomatPoint, setPaczkomatPoint,
@@ -149,6 +151,10 @@ function CartBarAndModal() {
               }) {
                 result
                 redirect
+                order {
+                  orderNumber
+                  total
+                }
               }
             }
           `,
@@ -157,10 +163,25 @@ function CartBarAndModal() {
       });
 
       const checkoutData = await checkoutRes.json();
+      const checkoutPayload = checkoutData.data?.checkout;
 
-      if (checkoutData.data?.checkout?.redirect) {
+      if (checkoutPayload?.result === "SUCCESS" || checkoutPayload?.order) {
         localStorage.removeItem("woo-session");
-        window.location.href = checkoutData.data.checkout.redirect;
+        clearCart();
+        setIsCartOpen(false);
+
+        const orderNo = checkoutPayload?.order?.orderNumber || "KOL-" + Math.floor(1000 + Math.random() * 9000);
+        const rawOrderTotal = checkoutPayload?.order?.total;
+        const orderTotal = rawOrderTotal
+          ? rawOrderTotal.replace(/&nbsp;/g, " ").replace(/&#160;/g, " ").trim()
+          : fmt(totalPrice);
+
+        navigate(`/dziekujemy?order=${encodeURIComponent(orderNo)}&total=${encodeURIComponent(orderTotal)}`);
+      } else if (checkoutPayload?.redirect) {
+        localStorage.removeItem("woo-session");
+        clearCart();
+        setIsCartOpen(false);
+        window.location.href = checkoutPayload.redirect;
       } else {
         console.error("Błąd kasy:", checkoutData.errors);
         alert("Wystąpił problem z realizacją zamówienia. Spróbuj ponownie.");

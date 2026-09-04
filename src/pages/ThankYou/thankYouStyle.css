@@ -1,0 +1,212 @@
+.thankYouPage {
+  min-height: 100vh;
+  background-color: rgb(var(--main-color));
+  color: rgb(var(--accent-color));
+  padding: 140px 24px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thankYouContainer {
+  max-width: 720px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.badgeSuccess {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(var(--secondary-color), 0.12);
+  color: rgb(var(--secondary-color));
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.badgeSuccessIcon {
+  color: rgb(var(--secondary-color));
+}
+
+.thankYouTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+  line-height: 1.15;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.thankYouSubtitle {
+  font-size: 1.125rem;
+  color: rgba(var(--accent-color), 0.75);
+  line-height: 1.6;
+  margin: 0 0 40px;
+  max-width: 580px;
+}
+
+.orderSummaryReceipt {
+  width: 100%;
+  background: var(--text-white);
+  border: 1px solid rgba(var(--accent-color), 0.08);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 40px -15px rgba(var(--accent-color), 0.06);
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.receiptHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed rgba(var(--accent-color), 0.15);
+  margin-bottom: 28px;
+}
+
+.receiptLabel {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(var(--accent-color), 0.5);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.receiptOrderNumber {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.receiptTotalWrap {
+  text-align: right;
+}
+
+.receiptTotalVal {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(var(--secondary-color));
+}
+
+.receiptSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stepCard {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.stepIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(var(--secondary-color), 0.1);
+  color: rgb(var(--secondary-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stepContent h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgb(var(--accent-color));
+  margin: 0 0 4px;
+}
+
+.stepContent p {
+  font-size: 0.875rem;
+  color: rgba(var(--accent-color), 0.65);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.thankYouActions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btnBackShop {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgb(var(--accent-color));
+  color: var(--text-white);
+  padding: 14px 28px;
+  border-radius: var(--button-border-radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btnBackShop:hover {
+  background-color: rgb(var(--secondary-color));
+  transform: translateY(-2px);
+}
+
+.btnGoHome {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 24px;
+  border-radius: var(--button-border-radius);
+  color: rgb(var(--accent-color));
+  border: 1px solid rgba(var(--accent-color), 0.2);
+  font-weight: 600;
+  font-size: 0.95rem;
+  background: transparent;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.btnGoHome:hover {
+  border-color: rgb(var(--secondary-color));
+  color: rgb(var(--secondary-color));
+}
+
+@media (max-width: 640px) {
+  .thankYouPage {
+    padding: 110px 16px 60px;
+  }
+
+  .orderSummaryReceipt {
+    padding: 24px 18px;
+  }
+
+  .receiptHeader {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .receiptTotalWrap {
+    text-align: left;
+  }
+
+  .thankYouActions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btnBackShop, .btnGoHome {
+    width: 100%;
+    justify-content: center;
+  }
+}
