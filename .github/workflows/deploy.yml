@@ -1,0 +1,30 @@
+name: Wdrażanie Reacta na Seohost
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie kodu
+        uses: actions/checkout@v3
+
+      - name: Instalacja środowiska
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Budowanie
+        run: |
+          npm install
+          npm run build
+
+      - name: Wysyłka na serwer
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: h85.seohost.pl
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./dist/
+          server-dir: ./domains/kolonaki.pl/public_html/
