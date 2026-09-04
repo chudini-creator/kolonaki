@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ShoppingBag, Check, Plus, Minus} from "lucide-react";
+import { ShoppingBag, Check, Plus, Minus } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 import "./productsShowcaseStyle.css";
 
-const WP_GRAPHQL_URL = "https://kolonaki.pl/graphql";
+const WP_GRAPHQL_URL = "https://admin.kolonaki.pl/graphql";
 
 const LOCAL_PRODUCTS_META = [
   {
@@ -118,7 +118,7 @@ function ProductsShowcase() {
             `
           })
         });
-        
+
         const json = await res.json();
         const wpProducts = json.data?.products?.nodes || [];
 
@@ -136,7 +136,7 @@ function ProductsShowcase() {
               ...localMeta,
               wpId: wpMatch.id,
               wpDatabaseId: wpMatch.databaseId,
-              name: wpMatch.name, 
+              name: wpMatch.name,
               price: rawPrice,
               priceFormatted: wpMatch.price.replace(/&nbsp;/g, " "),
               image: wpMatch.image?.sourceUrl || localMeta.defaultImage
@@ -146,7 +146,7 @@ function ProductsShowcase() {
         });
 
         setProducts(mergedProducts);
-        
+
         const initialQty = {};
         mergedProducts.forEach(p => { initialQty[p.id] = 1; });
         setQuantities(initialQty);
@@ -178,7 +178,7 @@ function ProductsShowcase() {
       image: product.image,
       variety: product.variety
     }, currentQty);
-    
+
     setAddedAnimation((prev) => ({ ...prev, [product.id]: true }));
     setTimeout(() => {
       setAddedAnimation((prev) => ({ ...prev, [product.id]: false }));
@@ -188,7 +188,7 @@ function ProductsShowcase() {
   return (
     <section id="products" className="productsSection" aria-label="Katalog produktów Kolonaki">
       <div className="productsContainer">
-        
+
         {loading && (
           <div style={{ textAlign: "center", padding: "100px 0", color: "rgba(var(--accent-color), 0.5)" }}>
             Ładowanie produktów z WooCommerce...

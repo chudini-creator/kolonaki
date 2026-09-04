@@ -58,7 +58,6 @@ function CartBarAndModal() {
   };
 
   const handleCheckout = async () => {
-    // 1. Walidacja
     if (selectedShippingId === "kurier") {
       if (!courierAddress.fullName || !courierAddress.email || !courierAddress.street || !courierAddress.city || !courierAddress.phone) {
         alert("Wypełnij wymagane pola adresu dostawy (w tym email).");
@@ -75,12 +74,11 @@ function CartBarAndModal() {
     setIsCheckoutLoading(true);
 
     try {
-      const WP_GRAPHQL_URL = "https://kolonaki.pl/graphql";
-      
-      // WYMUSZENIE NOWEJ SESJI: czyścimy stary token, by WooCommerce wygenerował czysty koszyk
+      const WP_GRAPHQL_URL = "https://admin.kolonaki.pl/graphql";
+
       localStorage.removeItem("woo-session");
       let sessionToken = null;
-      
+
       const getHeaders = () => {
         const headers = { "Content-Type": "application/json" };
         if (sessionToken) headers["woocommerce-session"] = `Session ${sessionToken}`;
@@ -109,13 +107,12 @@ function CartBarAndModal() {
           localStorage.setItem("woo-session", newToken);
         }
       }
-      // 3. Budujemy dane do kasy
       const [firstName, ...lastNameParts] = (selectedShippingId === "kurier" ? courierAddress.fullName : paczkomatRecipient.fullName).split(" ");
       const lastName = lastNameParts.join(" ") || "Brak";
       const email = selectedShippingId === "kurier" ? courierAddress.email : paczkomatRecipient.email;
       const phone = selectedShippingId === "kurier" ? courierAddress.phone : paczkomatRecipient.phone;
 
-      const addressLine = selectedShippingId === "kurier" 
+      const addressLine = selectedShippingId === "kurier"
         ? `${courierAddress.street} ${courierAddress.buildingNo}/${courierAddress.apartmentNo || ""}`
         : paczkomatPoint.code;
 
@@ -133,11 +130,10 @@ function CartBarAndModal() {
         country: "PL"
       };
 
-      const customerNote = selectedShippingId === "paczkomat" 
+      const customerNote = selectedShippingId === "paczkomat"
         ? `Wybrany Paczkomat: ${paczkomatPoint.code} (${paczkomatPoint.address}, ${paczkomatPoint.city})`
         : "";
 
-      // 4. Wysłanie mutacji Checkout
       const checkoutRes = await fetch(WP_GRAPHQL_URL, {
         method: "POST",
         headers: getHeaders(),
