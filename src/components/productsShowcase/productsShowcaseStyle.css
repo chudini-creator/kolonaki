@@ -14,13 +14,83 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 80px;
+}
+
+.shopSectionsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  width: 100%;
+}
+
+.shopTierSection {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+
+.tierHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.tierTitle {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.tierDescription {
+  font-size: 1.05rem;
+  color: rgba(var(--accent-color), 0.7);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.tierDivider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.tierDividerLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(var(--accent-color), 0.12);
+}
+
+.tierDividerDiamond {
+  width: 8px;
+  height: 8px;
+  background: rgb(var(--secondary-color));
+  transform: rotate(45deg);
 }
 
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
+  width: 100%;
+}
+
+.singleLayoutGrid {
+  display: flex;
+  justify-content: center;
+}
+
+.singleLayoutGrid .productCard {
+  max-width: 620px;
   width: 100%;
 }
 
@@ -406,5 +476,152 @@
   .addToCartBtn {
     font-size: 0.88rem;
     padding: 12px 14px;
+  }
+}
+
+.noticeModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(var(--accent-color), 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: noticeFadeIn 0.25s ease-out;
+}
+
+.noticeModalCard {
+  background: rgb(var(--main-color));
+  color: rgb(var(--accent-color));
+  border: 1px solid rgba(var(--secondary-color), 0.35);
+  border-radius: 24px;
+  padding: 40px 36px 36px;
+  max-width: 520px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(var(--accent-color), 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: noticeScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.noticeCloseBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: rgba(var(--accent-color), 0.45);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.noticeCloseBtn:hover {
+  color: rgb(var(--accent-color));
+  background: rgba(var(--accent-color), 0.06);
+}
+
+.noticeHeaderWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.noticeIconBadge {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(var(--secondary-color), 0.15);
+  color: rgb(var(--secondary-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.noticeKicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--secondary-color));
+}
+
+.noticeTitle {
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: rgb(var(--accent-color));
+}
+
+.noticeText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--accent-color), 0.75);
+  margin: 0 0 20px;
+}
+
+.noticeDateHighlight {
+  background: rgba(var(--secondary-color), 0.12);
+  border: 1px solid rgba(var(--secondary-color), 0.3);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgb(var(--secondary-color));
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+}
+
+.noticeDismissBtn {
+  background: transparent;
+  border: none;
+  color: rgba(var(--accent-color), 0.5);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 8px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.noticeDismissBtn:hover {
+  color: rgb(var(--accent-color));
+}
+
+@keyframes noticeFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes noticeScaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 540px) {
+  .noticeModalCard {
+    padding: 32px 20px 24px;
+  }
+  .notifyInputRow {
+    flex-direction: column;
+  }
+  .notifySubmitBtn {
+    width: 100%;
+    justify-content: center;
   }
 }
