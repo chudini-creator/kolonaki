@@ -16,19 +16,6 @@ const PRODUCTS_DATA = [
     tastingNotes: ["Świeża trawa", "Pomidor", "Migdały", "Jabłko", "Banan", "Owoce tropikalne"],
   },
   {
-    id: "koroneiko-early-harvest",
-    name: "Oliwa Koroneiko Early Harvest",
-    variety: "Odmiana Koroneiki",
-    tagline: "Wczesny zbiór z najstarszych drzew oliwnych w tubie ozdobnej",
-    description:
-      "Oliwa z oliwek extra virgin odmiany Koroneiki charakteryzuje się zasadniczo zielonym i niedojrzałym profilem aromatycznym z intensywnymi nutami świeżo skoszonej trawy, karczocha, skórki pomidora i zielonej łupiny orzecha włoskiego, które stają się jeszcze wyrazistsze podczas degustacji. Średnia owocowość oraz wysoka goryczka i pikantność plasują ją w gronie oliw extra virgin o niezwykle silnym charakterze smakowym.",
-    image: "/img/Produkty/Koroneiko-2.webp",
-    acidity: "< 0,24%",
-    harvest: "Październik (Wczesny Zbiór)",
-    origin: "Peloponez",
-    tastingNotes: ["Świeża trawa", "Karczoch", "Skórka pomidora", "Orzech Włoski"],
-  },
-  {
     id: "manaki-early-harvest",
     name: "Oliwa Manaki Early Harvest",
     variety: "Odmiana Manaki",
@@ -40,6 +27,19 @@ const PRODUCTS_DATA = [
     harvest: "Grudzień – Styczeń",
     origin: "Argolida, Grecja",
     tastingNotes: ["Zielone migdały", "Banan", "Rumianek"],
+  },
+  {
+    id: "koroneiko-early-harvest",
+    name: "Oliwa Koroneiko Early Harvest",
+    variety: "Odmiana Koroneiki",
+    tagline: "Wczesny zbiór z najstarszych drzew oliwnych w tubie ozdobnej",
+    description:
+      "Oliwa z oliwek extra virgin odmiany Koroneiki charakteryzuje się zasadniczo zielonym i niedojrzałym profilem aromatycznym z intensywnymi nutami świeżo skoszonej trawy, karczocha, skórki pomidora i zielonej łupiny orzecha włoskiego, które stają się jeszcze wyrazistsze podczas degustacji. Średnia owocowość oraz wysoka goryczka i pikantność plasują ją w gronie oliw extra virgin o niezwykle silnym charakterze smakowym.",
+    image: "/img/Produkty/Koroneiko-2.webp",
+    acidity: "< 0,24%",
+    harvest: "Październik (Wczesny Zbiór)",
+    origin: "Peloponez",
+    tastingNotes: ["Świeża trawa", "Karczoch", "Skórka pomidora", "Orzech Włoski"],
   },
   {
     id: "manaki",

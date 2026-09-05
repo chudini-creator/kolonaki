@@ -8,7 +8,7 @@ const PRODUCTS_GRID_DATA = [
     id: "koroneiki-classic",
     num: "01",
     name: "Koroneiko",
-    category: "Oliwa Ekstra Dziewicza",
+    category: "Oliwa Extra Virgin",
     tagline: "Królowa greckich oliwek o intensywnym aromacie.",
     image: "/img/Produkty/Koroneiko-2.webp",
     watermark: "KORONEIKO",
@@ -18,7 +18,7 @@ const PRODUCTS_GRID_DATA = [
     id: "koroneiki-reserve",
     num: "02",
     name: "Manaki",
-    category: "Edycja Prezentowa",
+    category: "Oliwa Extra Virgin",
     tagline: "Limitowana selekcja z gajów oliwnych w eleganckiej tubie.",
     image: "/img/Produkty/Manaki-2.webp",
     watermark: "MANAKI",
@@ -28,7 +28,7 @@ const PRODUCTS_GRID_DATA = [
     id: "manaki-classic",
     num: "03",
     name: "Limited edition September harvest",
-    category: "Oliwa Ekstra Dziewicza",
+    category: "Oliwa Extra Virgin",
     tagline: "Ekskluzywne wydanie z wrześniowego zbioru.",
     image: "/img/Produkty/Koroneiko.webp",
     watermark: "SEPTEMBER HARVEST",
@@ -38,7 +38,7 @@ const PRODUCTS_GRID_DATA = [
     id: "manaki-reserve",
     num: "04",
     name: "Selected early harvest",
-    category: "Edycja Prezentowa",
+    category: "Oliwa Extra Virgin",
     tagline: "Ekskluzywne wydanie z późnego zbioru",
     image: "/img/Produkty/Manaki.webp",
     watermark: "MANAKI",
@@ -150,7 +150,7 @@ function ProductsGallery() {
         </div>
 
         <div className="galleryBottomCta">
-          <Link to="/shop" className="galleryMainShopBtn">
+          <Link to="/sklep" className="galleryMainShopBtn">
             <span>Zobacz kolekcję w sklepie</span>
             <ArrowUpRight size={18} />
           </Link>
