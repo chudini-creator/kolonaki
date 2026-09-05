@@ -74,7 +74,7 @@ function Header() {
         <nav className="headerNav desktopNav" aria-label="Nawigacja główna">
           <ul className="navList">
             <li>
-              <Link to="/o-nas" className="navLink">
+              <Link to="/o-mnie" className="navLink">
                 O mnie
               </Link>
             </li>

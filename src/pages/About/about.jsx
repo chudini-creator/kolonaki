@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
+import { Sparkles, ArrowRight } from "lucide-react";
 import "./aboutStyle.css";
+
+const IS_UNDER_MAINTENANCE = true;
 
 const NAME = "Krzysztof Sasak";
 const IDENTITY_WORDS = ["Smakosz.", "Naukowiec.", "Pasjonat."];
@@ -23,6 +27,8 @@ function About() {
   }, []);
 
   useEffect(() => {
+    if (IS_UNDER_MAINTENANCE) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -45,6 +51,43 @@ function About() {
 
     return () => observer.disconnect();
   }, []);
+
+  if (IS_UNDER_MAINTENANCE) {
+    return (
+      <div className="aboutPage comingSoonContainer">
+        <Helmet>
+          <title>O mnie • Wkrótce dostępne | Kolonaki</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
+
+        <div className="comingSoonCard">
+          <h1 className="comingSoonTitle">Wkrótce dostępne</h1>
+          
+          <p className="comingSoonDesc">
+            Trwają ostatnie szlify redakcyjne nad tą podstroną. Już wkrótce przedstawimy
+            pełną opowieść o pasji do greckiej kultury stołu, naukowym podejściu do jakości
+            i selekcji wybitnych oliw extra virgin.
+          </p>
+
+          <div className="comingSoonDivider">
+            <span className="comingSoonLine" />
+            <span className="comingSoonDiamond" />
+            <span className="comingSoonLine" />
+          </div>
+
+          <div className="comingSoonActions">
+            <Link to="/sklep" className="btnComingSoonPrimary">
+              <span>Przejdź do sklepu</span>
+              <ArrowRight size={16} />
+            </Link>
+            <Link to="/" className="btnComingSoonSecondary">
+              Strona główna
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="aboutPage">

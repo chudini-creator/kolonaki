@@ -247,3 +247,122 @@
     font-size: clamp(3rem, 13vw, 5rem);
   }
 }
+
+.comingSoonContainer {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 80px;
+}
+
+.comingSoonCard {
+  max-width: 640px;
+  width: 100%;
+  background: var(--text-white);
+  border: 1px solid rgba(var(--accent-color), 0.08);
+  border-radius: 24px;
+  padding: 56px 40px 48px;
+  box-shadow: 0 20px 48px rgba(var(--accent-color), 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.comingSoonTitle {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: rgb(var(--accent-color));
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 18px;
+}
+
+.comingSoonDesc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(var(--accent-color), 0.72);
+  margin: 0 0 28px;
+  max-width: 520px;
+}
+
+.comingSoonDivider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 32px;
+}
+
+.comingSoonLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(var(--accent-color), 0.12);
+}
+
+.comingSoonDiamond {
+  width: 6px;
+  height: 6px;
+  background: rgb(var(--secondary-color));
+  transform: rotate(45deg);
+}
+
+.comingSoonActions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnComingSoonPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgb(var(--accent-color));
+  color: var(--text-white);
+  padding: 13px 26px;
+  border-radius: var(--button-border-radius);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.btnComingSoonPrimary:hover {
+  background: rgb(var(--secondary-color));
+  transform: translateY(-2px);
+}
+
+.btnComingSoonSecondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 22px;
+  border-radius: var(--button-border-radius);
+  color: rgb(var(--accent-color));
+  border: 1px solid rgba(var(--accent-color), 0.2);
+  font-weight: 600;
+  font-size: 0.92rem;
+  background: transparent;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.btnComingSoonSecondary:hover {
+  border-color: rgb(var(--secondary-color));
+  color: rgb(var(--secondary-color));
+}
+
+@media (max-width: 540px) {
+  .comingSoonCard {
+    padding: 36px 20px 32px;
+  }
+  .comingSoonActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btnComingSoonPrimary, .btnComingSoonSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

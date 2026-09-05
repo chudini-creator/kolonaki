@@ -94,11 +94,6 @@ function Footer() {
           <div className="footerCol contactCol">
             <h4 className="footerColTitle">Kontakt & Dystrybucja</h4>
             <div className="footerContactList">
-              <a href="tel:+48605890987" className="footerContactItem">
-                <Phone size={18} className="contactIcon" />
-                <span>+48 605 890 987</span>
-              </a>
-
               <a href="mailto:kontakt@kolonaki.pl" className="footerContactItem">
                 <Mail size={18} className="contactIcon" />
                 <span>kontakt@kolonaki.pl</span>
