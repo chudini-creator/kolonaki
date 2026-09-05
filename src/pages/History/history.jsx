@@ -11,7 +11,7 @@ const CHAPTERS = [
     description:
       "Początkiem każdej butelki jest gaj. Rodzina Iatridis uprawia tu oliwki od pokoleń — wśród drzew liczących sobie około 150 lat, w górskiej Doliana na Peloponezie.",
     keywords: ["150-letnie drzewa", "Własna uprawa", "Pełna kontrola surowca"],
-    image: "/img/hero-bg.jpg",
+    image: "/img/Gaj.jpg",
   },
   {
     id: "selekcja",
