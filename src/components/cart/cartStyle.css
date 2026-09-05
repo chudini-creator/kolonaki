@@ -351,14 +351,31 @@
   border-top: 1px solid rgba(var(--accent-color), 0.07);
 }
 
+.shippingHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
 .shippingSectionTitle {
-  display: block;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: rgba(var(--accent-color), 0.45);
-  margin-bottom: 12px;
+}
+
+.shippingBatchBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgb(var(--secondary-color));
+  background: rgba(var(--secondary-color), 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
 }
 
 .shippingOptions {

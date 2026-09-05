@@ -22,10 +22,6 @@ function Shop() {
       <PageHero title="Grecka Oliwa Extra Virgin" description=" Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio aperiam culpa, aut voluptas accusantium iste magnam tempora aliquid molestiae illo maiores mollitia repellat iure quidem recusandae iusto vel numquam ab earum saepe labore cum laudantium ea sit? Alias, beatae consequatur.">
         <div className="shopPerksGrid">
             <div className="perkItem">
-              <Truck size={18} className="perkIcon" />
-              <span>Darmowa dostawa od 200 zł</span>
-            </div>
-            <div className="perkItem">
               <ShieldCheck size={18} className="perkIcon" />
               <span>100% Certyfikowane Pochodzenie</span>
             </div>

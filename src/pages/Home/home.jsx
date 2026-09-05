@@ -9,9 +9,9 @@ const heroSlides = [
     title: "KOLONAKI",
     subtitle: "Tradycyjna oliwa",
     ctaText: "Zobacz produkty",
-    ctaLink: "/products",
+    ctaLink: "/produkty",
     secondaryCtaText: "Nasza historia",
-    secondaryCtaLink: "/story"
+    secondaryCtaLink: "/historia"
   },
   {
     image: "/img/hero-2.jpg",
@@ -19,9 +19,9 @@ const heroSlides = [
     title: "POCZUJ KLIMAT ATEN WE WŁASNYM DOMU",
     subtitle: "Wyjątkowe produkty",
     ctaText: "Skontaktuj się z nami",
-    ctaLink: "/contact",
-    secondaryCtaText: "O nas",
-    secondaryCtaLink: "/about"
+    ctaLink: "/kontakt",
+    secondaryCtaText: "O mnie",
+    secondaryCtaLink: "/o-mnie"
   },
   {
     image: "/img/hero-3.webp",
@@ -29,9 +29,9 @@ const heroSlides = [
     title: "OLIWNA TRADYCJA",
     subtitle: "Oryginalne greckie produkty, oliwa tłoczona na zimno.",
     ctaText: "Przejdź do sklepu",
-    ctaLink: "/shop",
+    ctaLink: "/sklep",
     secondaryCtaText: "Produkty",
-    secondaryCtaLink: "/products"
+    secondaryCtaLink: "/produkty"
   }
 ];
 

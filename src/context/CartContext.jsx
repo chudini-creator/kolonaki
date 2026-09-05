@@ -4,20 +4,20 @@ const CartContext = createContext();
 
 const CART_STORAGE_KEY = "kolonaki_cart_v1";
 
-export const SHIPPING_OPTIONS = [
-  {
-    id: "paczkomat",
+export const SHIPPING_RATES = {
+  paczkomat: {
+    base: 18.99,
+    large: 36.99,
     label: "Paczkomat InPost",
     description: "Odbiór w wybranym paczkomacie · 1-2 dni robocze",
-    price: 13.99,
   },
-  {
-    id: "kurier",
+  kurier: {
+    base: 24.99,
+    large: 49.99,
     label: "Kurier do domu",
     description: "DPD / InPost · dostawa pod drzwi · 1-2 dni robocze",
-    price: 16.99,
   },
-];
+};
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState(() => {
@@ -98,7 +98,16 @@ export function CartProvider({ children }) {
     return sum + rawPrice * item.quantity;
   }, 0);
 
-  const selectedShipping = SHIPPING_OPTIONS.find((o) => o.id === selectedShippingId) || SHIPPING_OPTIONS[0];
+  const isLargeOrder = totalItems >= 4;
+
+  const shippingOptions = Object.entries(SHIPPING_RATES).map(([id, rate]) => ({
+    id,
+    label: rate.label,
+    description: rate.description,
+    price: isLargeOrder ? rate.large : rate.base,
+  }));
+
+  const selectedShipping = shippingOptions.find((o) => o.id === selectedShippingId) || shippingOptions[0];
   const shippingCost = selectedShipping.price;
   const totalPrice = productsTotal + shippingCost;
 
@@ -116,6 +125,8 @@ export function CartProvider({ children }) {
         productsTotal,
         shippingCost,
         totalPrice,
+        shippingOptions,
+        isLargeOrder,
         selectedShippingId,
         setSelectedShippingId,
         selectedShipping,

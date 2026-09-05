@@ -4,7 +4,7 @@ import {
   ShoppingBag, X, Plus, Minus, Trash2, ArrowRight,
   Truck, Package, MapPin, ChevronRight,
 } from "lucide-react";
-import { useCart, SHIPPING_OPTIONS } from "../../context/CartContext";
+import { useCart } from "../../context/CartContext";
 import PaczkomatOverlay from "./paczkomatOverlay";
 import "./cartStyle.css";
 
@@ -16,6 +16,7 @@ function CartBarAndModal() {
     cart, isCartOpen, setIsCartOpen,
     removeFromCart, updateQuantity, clearCart,
     totalItems, productsTotal, shippingCost, totalPrice,
+    shippingOptions, isLargeOrder,
     selectedShippingId, setSelectedShippingId,
     paczkomatPoint, setPaczkomatPoint,
     paczkomatRecipient, setPaczkomatRecipient,
@@ -289,9 +290,14 @@ function CartBarAndModal() {
                   </div>
 
                   <div className="shippingSection">
-                    <span className="shippingSectionTitle">Dostawa</span>
+                    <div className="shippingHeaderRow">
+                      <span className="shippingSectionTitle">Dostawa</span>
+                      {isLargeOrder && (
+                        <span className="shippingBatchBadge">Zamówienie 4+ butelek</span>
+                      )}
+                    </div>
                     <div className="shippingOptions">
-                      {SHIPPING_OPTIONS.map((option) => {
+                      {shippingOptions.map((option) => {
                         const Icon = SHIPPING_ICONS[option.id];
                         const isSelected = selectedShippingId === option.id;
                         return (
