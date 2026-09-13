@@ -10,6 +10,7 @@ import Products from './pages/Products/products';
 import History from './pages/History/history';
 import About from './pages/About/about';
 import ThankYou from './pages/ThankYou/thankYou';
+import Admin from './pages/Admin/admin';
 import { CartProvider } from './context/CartContext';
 import CartBarAndModal from './components/cart/cartBarAndModal';
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/historia" element={<History />} />
                 <Route path="/kontakt" element={<Contact />} />
                 <Route path="/dziekujemy" element={<ThankYou />} />
+                <Route path="/panel" element={<Admin />} />
               </Routes>
             </main>
             <Footer />

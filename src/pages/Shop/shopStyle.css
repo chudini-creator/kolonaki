@@ -65,3 +65,96 @@
     justify-content: center;
   }
 }
+
+.partnersSection {
+  width: 100%;
+  background-color: rgb(var(--main-color));
+  padding: 24px 24px 48px;
+  border-bottom: 1px solid rgba(var(--accent-color), 0.08);
+}
+
+.partnersContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.partnersHeader {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.partnersKicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(var(--secondary-color));
+}
+
+.partnersDescription {
+  font-size: 0.92rem;
+  color: rgba(var(--accent-color), 0.65);
+  margin: 0;
+}
+
+.partnersLogoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px 48px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.partnerLogoItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+  padding: 8px 12px;
+}
+
+.partnerLogoItem:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-2px);
+}
+
+.partnerBrandLogo {
+  max-height: 38px;
+  max-width: 130px;
+  object-fit: contain;
+  display: block;
+}
+
+.partnerBrandText {
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgb(var(--accent-color));
+  transition: color 0.2s ease;
+}
+
+.partnerLogoItem:hover .partnerBrandText {
+  color: rgb(var(--secondary-color));
+}
+
+@media screen and (max-width: 640px) {
+  .partnersLogoRow {
+    gap: 20px 28px;
+  }
+  .partnersSection {
+    padding: 16px 16px 36px;
+  }
+}
