@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { MapPin, ExternalLink, Sparkles, Store, ShieldCheck, RefreshCw } from "lucide-react";
 import ProductsShowcase from "../../components/productsShowcase/productsShowcase";
 import PageHero from "../../components/pageHero/pageHero";
 import "./shopStyle.css";
@@ -55,26 +54,15 @@ function Shop() {
 
       <PageHero
         title="Grecka Oliwa Extra Virgin"
-        description="Rzemieślnicza oliwa tłoczona na zimno w dolinie Arkadii z wyselekcjonowanych odmian Koroneiki i Manaki. Wybierz butelkę dla siebie lub odwiedź nasze punkty stacjonarne."
-      >
-        <div className="shopPerksGrid">
-          <div className="perkItem">
-            <ShieldCheck size={18} className="perkIcon" />
-            <span>100% Certyfikowane Pochodzenie</span>
-          </div>
-          <div className="perkItem">
-            <RefreshCw size={18} className="perkIcon" />
-            <span>Pancernie pakowane butelki</span>
-          </div>
-        </div>
-      </PageHero>
+        description="Rzemieślnicza oliwa tłoczona na zimno w sercu Arkadii, z wyselekcjonowanych odmian Manaki i Koroneiko. Od limitowanych, wczesnych zbiorów po łagodniejsze oliwy do codziennej kuchni — odkryj różne oblicza autentycznej greckiej oliwy. Wybierz swoją butelkę lub odwiedź jeden z naszych punktów stacjonarnych."
+      />
 
       <section className="partnersSection">
         <div className="partnersContainer">
           <div className="partnersHeader">
             <span className="partnersKicker">Dostępne również stacjonarnie</span>
             <p className="partnersDescription">
-              Spróbuj i kup nasze oliwy w wyselekcjonowanych delikatesach i restauracjach partnerskich:
+              Poznaj smak Iatridis Estate przed zakupem. Nasze oliwy znajdziesz w starannie wyselekcjonowanych delikatesach, restauracjach i punktach partnerskich. Odwiedź jedno z tych miejsc, spróbuj różnych odmian i wybierz oliwę najlepiej odpowiadającą Twojemu smakowi.
             </p>
           </div>
 

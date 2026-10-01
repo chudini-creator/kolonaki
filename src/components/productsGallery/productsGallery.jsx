@@ -5,44 +5,44 @@ import "./productsGalleryStyle.css";
 
 const PRODUCTS_GRID_DATA = [
   {
-    id: "koroneiki-classic",
+    id: "september-harvest",
     num: "01",
-    name: "Koroneiko",
-    category: "Oliwa Extra Virgin",
-    tagline: "Królowa greckich oliwek o intensywnym aromacie.",
-    image: "/img/Produkty/Koroneiko-2.webp",
-    watermark: "KORONEIKO",
-    link: "/products"
-  },
-  {
-    id: "koroneiki-reserve",
-    num: "02",
-    name: "Manaki",
-    category: "Oliwa Extra Virgin",
-    tagline: "Limitowana selekcja z gajów oliwnych w eleganckiej tubie.",
-    image: "/img/Produkty/Manaki-2.webp",
-    watermark: "MANAKI",
-    link: "/products"
-  },
-  {
-    id: "manaki-classic",
-    num: "03",
-    name: "Limited edition September harvest",
-    category: "Oliwa Extra Virgin",
-    tagline: "Ekskluzywne wydanie z wrześniowego zbioru.",
+    name: "September Harvest",
+    category: "Limited Edition",
+    tagline: "Limitowany wrześniowy zbiór odmiany Manaki.",
     image: "/img/Produkty/Koroneiko.webp",
     watermark: "SEPTEMBER HARVEST",
-    link: "/products"
+    link: "/sklep"
   },
   {
-    id: "manaki-reserve",
+    id: "manaki-early-harvest",
+    num: "02",
+    name: "Manaki Early Harvest",
+    category: "Premium Edition",
+    tagline: "Odmiana Manaki w wersji wczesnego zbioru.",
+    image: "/img/Produkty/Manaki-2.webp",
+    watermark: "MANAKI",
+    link: "/sklep"
+  },
+  {
+    id: "koroneiko-early-harvest",
+    num: "03",
+    name: "Koroneiko Early Harvest",
+    category: "Premium Edition",
+    tagline: "Klasyczna grecka odmiana w intensywnej odsłonie wczesnego zbioru.",
+    image: "/img/Produkty/Koroneiko-2.webp",
+    watermark: "KORONEIKO",
+    link: "/sklep"
+  },
+  {
+    id: "manaki-basic",
     num: "04",
-    name: "Selected early harvest",
-    category: "Oliwa Extra Virgin",
-    tagline: "Ekskluzywne wydanie z późnego zbioru",
+    name: "Manaki",
+    category: "Basic Edition",
+    tagline: "Aksamitna i łagodna, z subtelnymi nutami dojrzałych owoców.",
     image: "/img/Produkty/Manaki.webp",
     watermark: "MANAKI",
-    link: "/products"
+    link: "/sklep"
   }
 ];
 
