@@ -23,10 +23,10 @@ function Footer() {
               <span className="footerLogo">Kolonaki</span>
             </Link>
             <p className="footerBrandText">
-              Autentyczna grecka oliwa z oliwek Extra Virgin z Peloponezu i Argolidy.
-              Prawdziwe greckie złoto tłoczone metodami tradycyjnymi, bezpośrednio z rodzinnych gajów oliwnych.
+              Autentyczna grecka oliwa extra virgin prosto z serca Peloponezu.
+              Greckie złoto z rodzinnych gajów Iatridis Estate, tłoczone na zimno we własnej tłoczni zaledwie kilka godzin po zbiorze.
+              Od gaju do butelki — z troską o jakość, smak i autentyczność.
             </p>
-
           </div>
 
           <div className="footerCol linksCol">
@@ -38,7 +38,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/o-nas" onClick={scrollToTop} className="footerLink">
+                <Link to="/o-mnie" onClick={scrollToTop} className="footerLink">
                   O mnie
                 </Link>
               </li>
@@ -69,23 +69,28 @@ function Footer() {
             <h4 className="footerColTitle">Kolekcja Oliw</h4>
             <ul className="footerLinksList">
               <li>
-                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
+                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
+                  September Harvest (500 ml)
+                </Link>
+              </li>
+              <li>
+                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
                   Manaki Early Harvest (500 ml)
                 </Link>
               </li>
               <li>
-                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
+                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
                   Koroneiko Early Harvest (500 ml)
                 </Link>
               </li>
               <li>
-                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
-                  Manaki Selected Harvest (750 ml)
+                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
+                  Manaki (750 ml)
                 </Link>
               </li>
               <li>
-                <Link to="/produkty" onClick={scrollToTop} className="footerLink">
-                  Manaki September Harvest (500 ml)
+                <Link to="/sklep" onClick={scrollToTop} className="footerLink">
+                  Manaki (5 L)
                 </Link>
               </li>
             </ul>
