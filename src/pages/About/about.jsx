@@ -22,19 +22,45 @@ function About() {
           content="Dr n. med. i n. o zdr. Krzysztof Sasak — naukowiec, podróżnik, smakosz. Poznaj historię pasji, w której nauka o antyoksydantach łączy się z rzemieślniczą grecką oliwą."
         />
       </Helmet>
-
       <header className="abHeroSection">
         <div className="abHeroContainer">
+          <div className="abHeroSplit">
+            <div className="abHeroContent">
+              <span className="abHeroBadge">
+                Dr n. med. i n. o zdr. Krzysztof Sasak
+              </span>
+              <h1 className="abHeroTitle">
+                Naukowiec. Podróżnik. Smakosz.
+              </h1>
+              <p className="abHeroLead">
+                Oliwa extra virgin to jeden z tych wyjątkowych produktów, w których spotykają
+                się dwa fascynujące światy — rzetelna wiedza o naturalnych antyoksydantach oraz
+                wielowiekowa tradycja śródziemnomorskiego stołu.
+              </p>
+              <div className="abHeroCredentials">
+                <span className="abCredPill">Uniwersytet Medyczny w Łodzi</span>
+                <span className="abCredDot">&bull;</span>
+                <span className="abCredPill">Akademia Kurta Schellera</span>
+                <span className="abCredDot">&bull;</span>
+                <span className="abCredPill">MasterChef Polska</span>
+              </div>
+            </div>
 
-          <h1 className="abHeroTitle">
-            Naukowiec. Podróżnik. Smakosz.
-          </h1>
-
-          <p className="abHeroLead">
-            Oliwa extra virgin to jeden z tych wyjątkowych produktów, w których spotykają
-            się dwa fascynujące światy — rzetelna wiedza o naturalnych antyoksydantach oraz
-            wielowiekowa tradycja śródziemnomorskiego stołu.
-          </p>
+            <div className="abHeroPortraitWrap">
+              <div className="abHeroPortraitCard">
+                <img
+                  src="/img/oMnie/Portret.JPG"
+                  alt="Dr n. med. i n. o zdr. Krzysztof Sasak"
+                  className="abHeroPortraitImg"
+                  loading="eager"
+                />
+                <div className="abPortraitCaption">
+                  <span className="abPortraitName">Dr Krzysztof Sasak</span>
+                  <span className="abPortraitRole">Założyciel Kolonaki</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -67,6 +93,7 @@ function About() {
               <p className="abTextParagraph">
                 Poza laboratorium od lat fascynują mnie podróże, gotowanie i odkrywanie dobrego smaku. Jednym z moich kulinarnych mentorów był Kurt Scheller, z którym miałem przyjemność gotować i od którego mogłem uczyć się nie tylko techniki, ale przede wszystkim szacunku do produktu i jakości składników. Brałem również udział w programie MasterChef, a szczególne miejsce w mojej kuchni zawsze zajmowały smaki i produkty śródziemnomorskie.
               </p>
+
               <p className="abTextParagraph">
                 To właśnie przekonanie, że dobry produkt nie potrzebuje wielu dodatków — potrzebuje jakości, towarzyszy mi dziś również przy wyborze oliw do Kolonaki.
               </p>
@@ -89,6 +116,26 @@ function About() {
                 </div>
               </div>
             </aside>
+          </div>
+
+          <div className="abAsymmetricCulinarySplit">
+            <div className="abAsymmetricCard abCardLandscape">
+              <img
+                src="/img/oMnie/Gotowanie.JPG"
+                alt="Warsztat kulinarny – pasja gotowania i jakość składników"
+                className="abAsymmetricImg"
+                loading="lazy"
+              />
+            </div>
+
+            <div className="abAsymmetricCard abCardSquare">
+              <img
+                src="/img/oMnie/MasterChef.png"
+                alt="Dr Krzysztof Sasak w programie MasterChef"
+                className="abAsymmetricImg"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div className="abQuoteBanner">
@@ -168,7 +215,6 @@ function About() {
             </p>
           </div>
 
-          {/* --- DUAL PERSPECTIVE BOX --- */}
           <div className="abDualPerspectiveWrap">
             <div className="abPerspectiveCard">
               <span className="abPerspectiveKicker">Jako smakosz</span>

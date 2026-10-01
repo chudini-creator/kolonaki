@@ -7,44 +7,151 @@
 
 .abHeroSection {
   padding: 130px 24px 70px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
   position: relative;
   background: radial-gradient(
-    circle at 50% 20%,
-    rgba(var(--secondary-color), 0.08) 0%,
+    circle at 60% 30%,
+    rgba(var(--secondary-color), 0.09) 0%,
     rgba(var(--main-color), 0) 70%
   );
 }
 
 .abHeroContainer {
-  max-width: 960px;
+  max-width: 1140px;
+  margin: 0 auto;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+}
+
+.abHeroSplit {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 56px;
   align-items: center;
 }
 
+.abHeroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.abHeroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(var(--secondary-color), 0.1);
+  border: 1px solid rgba(var(--secondary-color), 0.25);
+  color: rgb(var(--secondary-color));
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .abHeroTitle {
-  font-size: clamp(2.5rem, 5.5vw, 4.3rem);
+  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
   font-weight: 800;
   color: rgb(var(--accent-color));
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.035em;
-  margin: 24px 0 20px;
+  margin: 20px 0 18px;
 }
 
 .abHeroLead {
-  font-size: clamp(1.05rem, 1.6vw, 1.24rem);
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   line-height: 1.7;
   color: rgba(var(--accent-color), 0.82);
-  max-width: 780px;
-  margin: 0 0 44px;
+  margin: 0 0 28px;
+}
+
+.abHeroCredentials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.abCredPill {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgb(var(--accent-color));
+  background: rgba(var(--accent-color), 0.05);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.abCredDot {
+  color: rgb(var(--secondary-color));
+  font-size: 0.8rem;
+}
+
+.abHeroPortraitWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.abHeroPortraitCard {
+  width: 100%;
+  max-width: 420px;
+  background: var(--text-white);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 54px rgba(var(--accent-color), 0.12);
+  border: 1px solid rgba(var(--secondary-color), 0.28);
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.abHeroPortraitCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 64px rgba(var(--accent-color), 0.16);
+}
+
+.abHeroPortraitImg {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.abPortraitCaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--accent-color), 0) 0%,
+    rgba(var(--accent-color), 0.88) 100%
+  );
+  color: var(--text-white);
+  padding: 36px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.abPortraitName {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.abPortraitRole {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgb(var(--secondary-color));
+  font-weight: 600;
 }
 
 .abChapterSection {
-  padding: 10px 24px;
+  padding: 84px 24px;
   position: relative;
 }
 
@@ -130,6 +237,53 @@
   line-height: 1.78;
   color: rgba(var(--accent-color), 0.85);
   margin: 0;
+}
+
+.abAsymmetricCulinarySplit {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  margin-bottom: 56px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.abAsymmetricCard {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgb(var(--accent-color));
+  border: 1px solid rgba(var(--secondary-color), 0.22);
+  box-shadow: 0 16px 40px rgba(var(--accent-color), 0.08);
+  height: 420px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.abAsymmetricCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(var(--accent-color), 0.14);
+}
+
+.abCardLandscape {
+  width: 100%;
+}
+
+.abCardSquare {
+  width: 420px;
+  height: 420px;
+}
+
+.abAsymmetricImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.abAsymmetricCard:hover .abAsymmetricImg {
+  transform: scale(1.05);
 }
 
 .abHighlightParagraph {
@@ -414,6 +568,21 @@
 }
 
 @media (max-width: 960px) {
+  .abHeroSplit {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .abHeroContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .abHeroCredentials {
+    justify-content: center;
+  }
+
   .abEditorialSplitGrid {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -421,11 +590,6 @@
 
   .abInsightSidebar {
     position: static;
-  }
-
-  .abPillarsGrid {
-    grid-template-columns: 1fr;
-    gap: 12px;
   }
 
   .abColumnsDuo {
@@ -437,6 +601,24 @@
     grid-template-columns: 1fr;
     gap: 16px;
   }
+
+  .abAsymmetricCulinarySplit {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .abCardLandscape {
+    height: 360px;
+    width: 100%;
+  }
+
+  .abCardSquare {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
 }
 
 @media (max-width: 640px) {
@@ -446,6 +628,20 @@
 
   .abChapterSection {
     padding: 60px 18px;
+  }
+
+  .abCardLandscape {
+    height: 280px;
+  }
+
+  .abCardSquare {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
+
+  .abAsymmetricOverlay {
+    padding: 28px 18px 16px;
   }
 
   .abQuoteBanner {
