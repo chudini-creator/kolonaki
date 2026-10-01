@@ -67,9 +67,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 100px 72px 40px;
+  padding: 80px 72px 30px;
   position: relative;
   z-index: 2;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.chContent::-webkit-scrollbar {
+  display: none;
 }
 
 .chEyebrow {
@@ -79,7 +85,7 @@
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: rgb(var(--secondary-color));
-  margin-bottom: 22px;
+  margin-bottom: 14px;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.65s ease 0.05s,
@@ -87,57 +93,80 @@
 }
 
 .chTitle {
-  font-size: clamp(3.5rem, 7vw, 7.5rem);
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
   font-weight: 800;
   color: rgb(var(--secondary-color));
-  margin: 0 0 28px;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  margin: 0 0 16px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   opacity: 0;
-  transform: translateY(36px);
+  transform: translateY(30px);
   transition: opacity 0.7s ease 0.18s,
     transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
 }
 
-.chDesc {
-  font-size: clamp(0.9rem, 1.2vw, 1.02rem);
-  line-height: 1.78;
-  color: rgba(var(--secondary-color), 1);
-  margin: 0 0 28px;
-  max-width: 460px;
+.chLead {
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: rgb(var(--secondary-color));
+  margin: 0 0 16px;
+  max-width: 520px;
   opacity: 0;
   transform: translateY(22px);
+  transition: opacity 0.7s ease 0.25s,
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+.chParagraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.chDesc {
+  font-size: clamp(0.85rem, 1.05vw, 0.96rem);
+  line-height: 1.7;
+  color: rgba(var(--secondary-color), 0.92);
+  margin: 0;
+  max-width: 520px;
+  opacity: 0;
+  transform: translateY(20px);
   transition: opacity 0.7s ease 0.32s,
     transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.32s;
 }
 
-.chKeywords {
+.chMotto {
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
+  margin-top: 8px;
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.65s ease 0.46s,
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease 0.4s,
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
 }
 
-.chKeyword {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: rgba(var(--accent-color), 0.6);
-  letter-spacing: 0.01em;
+.chMottoLine {
+  width: 24px;
+  height: 2px;
+  background: rgb(var(--secondary-color));
+  flex-shrink: 0;
 }
 
-.chKeywordSep {
-  color: rgba(var(--accent-color), 0.6);
-  font-size: 0.8rem;
+.chMottoText {
+  font-size: 0.92rem;
+  font-weight: 700;
+  font-style: italic;
+  color: rgb(var(--secondary-color));
 }
 
 .chActive .chEyebrow,
 .chActive .chTitle,
+.chActive .chLead,
 .chActive .chDesc,
-.chActive .chKeywords {
+.chActive .chMotto {
   opacity: 1;
   transform: none;
 }
@@ -249,8 +278,9 @@
 
   .chEyebrow,
   .chTitle,
+  .chLead,
   .chDesc,
-  .chKeywords {
+  .chMotto {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;

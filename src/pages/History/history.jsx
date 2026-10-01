@@ -8,9 +8,11 @@ const CHAPTERS = [
     step: "01",
     subtitle: "Doliana · Arkadia · Grecja",
     title: "Gaj",
-    description:
-      "Początkiem każdej butelki jest gaj. Rodzina Iatridis uprawia tu oliwki od pokoleń — wśród drzew liczących sobie około 150 lat, w górskiej Doliana na Peloponezie.",
-    keywords: ["150-letnie drzewa", "Własna uprawa", "Pełna kontrola surowca"],
+    lead: "Każda butelka Iatridis Estate ma swój początek w gaju.",
+    paragraphs: [
+      "W górskiej Dolianie, położonej w Arkadii na Peloponezie, rodzina Iatridis od pokoleń uprawia oliwki, dbając o drzewa, z których część liczy około 150 lat. To właśnie tutaj, w rytmie kolejnych sezonów, dojrzewają owoce odmian Manaki i Koroneiko, z których powstają oliwy Iatridis Estate.",
+      "Podczas zbiorów wykorzystanie pojazdów i urządzeń spalinowych w gaju ograniczane jest do minimum. Tam, gdzie jest to możliwe, stosowany jest sprzęt elektryczny, aby ograniczyć kontakt zbieranych owoców ze spalinami i innymi potencjalnymi źródłami zanieczyszczeń. Dbałość o czystość surowca zaczyna się więc jeszcze przed opuszczeniem gaju.",
+    ],
     image: "/img/Gaj.jpg",
   },
   {
@@ -18,9 +20,10 @@ const CHAPTERS = [
     step: "02",
     subtitle: "Manaki · Koroneiko",
     title: "Selekcja",
-    description:
-      "Nie wszystkie oliwki zasługują na tę samą butelkę. Każda partia selekcjonowana jest według odmiany, momentu zbioru i oczekiwanego profilu sensorycznego — decyzje podejmowane jeszcze w gaju.",
-    keywords: ["Dwie odmiany", "Profil sensoryczny", "Każda partia wyjątkowa"],
+    lead: "Nie wszystkie oliwki zasługują na to, by znaleźć się w butelce.",
+    paragraphs: [
+      "Jakość oliwy zaczyna się jeszcze w gaju. Każda partia owoców jest starannie selekcjonowana pod względem odmiany, momentu zbioru i oczekiwanego profilu sensorycznego. To właśnie tutaj podejmowane są pierwsze decyzje, które później definiują charakter każdej oliwy Iatridis Estate.",
+    ],
     image: "/img/hero-3.webp",
   },
   {
@@ -28,9 +31,10 @@ const CHAPTERS = [
     step: "03",
     subtitle: "Wrzesień · Październik",
     title: "Zbiór",
-    description:
-      "Wczesny zbiór to świadomy wybór. Oliwki zbierane przed pełną dojrzałością zawierają więcej polifenoli. Iatridis Estate rezygnuje z pojazdów spalinowych — żeby żaden kontakt ze spalinami nie naruszył czystości owoców.",
-    keywords: ["Wczesny zbiór", "Zero spalin", "Czystość sensoryczna"],
+    lead: "Moment zbioru nie jest przypadkiem — to jedna z najważniejszych decyzji kształtujących charakter oliwy.",
+    paragraphs: [
+      "Iatridis Estate rozpoczyna zbiory jeszcze przed osiągnięciem przez owoce pełnej dojrzałości. Wczesny zbiór sprzyja zachowaniu naturalnie występujących w oliwkach polifenoli i pozwala uzyskać charakterystyczny, wyrazisty profil sensoryczny. Podczas zbiorów producent rezygnuje z pojazdów spalinowych w gaju, ograniczając kontakt świeżo zebranych owoców ze spalinami.",
+    ],
     image: "/img/hero-2.jpg",
   },
   {
@@ -38,19 +42,23 @@ const CHAPTERS = [
     step: "04",
     subtitle: "Kilka godzin od drzewa do oleju",
     title: "Tłocznia",
-    description:
-      "Własna tłocznia, kilka godzin od zbioru do tłoczenia na zimno. Każda odmiana na osobnej linii — przed kolejną partią cała linia produkcyjna jest dokładnie czyszczona. Zero przypadkowych mieszanek.",
-    keywords: ["Własna tłocznia", "Zimne tłoczenie ≤27°C", "Osobna linia"],
+    lead: "Od zebrania owoców do tłoczenia mijają zaledwie godziny.",
+    paragraphs: [
+      "Oliwki trafiają bezpośrednio do własnej tłoczni Iatridis Estate, gdzie są przetwarzane na zimno. Każda odmiana i wyselekcjonowana partia tłoczona jest oddzielnie, a przed rozpoczęciem kolejnego procesu cała linia produkcyjna jest dokładnie czyszczona. Dzięki temu zachowany zostaje indywidualny charakter każdej oliwy — bez przypadkowego mieszania poszczególnych partii.",
+      "Świeżo wytłoczona oliwa nie czeka miesiącami w zbiornikach. Każdego roku, bezpośrednio po zakończeniu procesu, trafia do szklanych butelek, zachowując charakter konkretnego zbioru i wyselekcjonowanej partii.",
+    ],
     image: "/img/hero.jpg",
   },
   {
     id: "oliwa",
     step: "05",
-    subtitle: "Limitowane serie · 500 ml",
-    title: "Gotowa Oliwa",
-    description:
-      "W butelce zamknięty jest cały ten proces. Wyselekcjonowane partie trafiają do limitowanych edycji z pełną identyfikacją zbioru. Każda butelka to wyraz troski o każdy szczegół.",
-    keywords: ["Limitowane edycje", "Identyfikacja zbioru", "Bez kompromisów"],
+    subtitle: "Limitowane serie · Iatridis Estate",
+    title: "Gotowa oliwa",
+    lead: "W każdej butelce zamknięta jest historia konkretnego zbioru.",
+    paragraphs: [
+      "Wyselekcjonowane partie trafiają do limitowanych edycji, zachowując swoją tożsamość — od odmiany i momentu zbioru po charakterystyczny profil sensoryczny. Każda butelka Iatridis Estate jest zwieńczeniem procesu, który zaczyna się w gaju i na każdym etapie pozostaje pod kontrolą producenta.",
+    ],
+    motto: "Od drzewa do butelki — z troską o każdy szczegół.",
     image: "/img/Produkty/Koroneiko.webp",
   },
 ];
@@ -118,17 +126,18 @@ function History() {
                 <div className="chContent">
                   <span className="chEyebrow">{chapter.subtitle}</span>
                   <h2 className="chTitle">{chapter.title}</h2>
-                  <p className="chDesc">{chapter.description}</p>
-                  <div className="chKeywords">
-                    {chapter.keywords.map((kw, idx) => (
-                      <React.Fragment key={idx}>
-                        <span className="chKeyword">{kw}</span>
-                        {idx < chapter.keywords.length - 1 && (
-                          <span className="chKeywordSep" aria-hidden="true">·</span>
-                        )}
-                      </React.Fragment>
+                  {chapter.lead && <p className="chLead">{chapter.lead}</p>}
+                  <div className="chParagraphs">
+                    {chapter.paragraphs.map((p, pIdx) => (
+                      <p key={pIdx} className="chDesc">{p}</p>
                     ))}
                   </div>
+                  {chapter.motto && (
+                    <div className="chMotto">
+                      <span className="chMottoLine" />
+                      <span className="chMottoText">{chapter.motto}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="chBottom">
