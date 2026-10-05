@@ -88,7 +88,7 @@ const LOCAL_PRODUCTS_META = [
     badge: "Ekonomiczny Wybór",
     tagline: "Najbardziej ekonomiczny format do codziennego gotowania.",
     description: "Łagodna i uniwersalna oliwa extra virgin z odmiany Manaki w dużym, 5-litrowym opakowaniu chroniącym oliwę przed dostępem światła. Jej delikatny profil sprawia, że doskonale sprawdza się w codziennej kuchni — zarówno na zimno, jak i podczas przygotowywania potraw. Idealny wybór dla rodzin, restauracji i szefów kuchni, którzy potrzebują większej ilości dobrej greckiej oliwy do regularnego wykorzystania. Naturalnie zawiera polifenole oraz inne związki bioaktywne i cenne składniki odżywcze.",
-    defaultImage: "/img/Produkty/Manaki.webp",
+    defaultImage: "/img/Produkty/Manaki-5l.png",
     harvest: "Całoroczny",
     origin: "Dolina Arkadii, Grecja",
     tastingNotes: ["Owoce tropikalne", "Czerwone jabłko", "Świeże zioła"],
@@ -147,6 +147,9 @@ function ProductsShowcase() {
                     slug
                     ... on SimpleProduct {
                       price
+                      stockQuantity
+                      stockStatus
+                      manageStock
                     }
                     image {
                       sourceUrl
@@ -179,7 +182,10 @@ function ProductsShowcase() {
               name: localMeta.name || wpMatch.name,
               price: rawPrice,
               priceFormatted: rawPrice.toFixed(2).replace(".", ",") + " zł",
-              image: wpMatch.image?.sourceUrl || localMeta.defaultImage
+              image: localMeta.defaultImage || wpMatch.image?.sourceUrl,
+              stockQuantity: wpMatch.stockQuantity,
+              stockStatus: wpMatch.stockStatus,
+              manageStock: wpMatch.manageStock
             };
           }
           return { ...localMeta, price: 0, priceFormatted: "Brak ceny" };
@@ -200,17 +206,36 @@ function ProductsShowcase() {
     fetchProducts();
   }, []);
 
+  const [stockMessages, setStockMessages] = useState({});
   const [isNoticeOpen, setIsNoticeOpen] = useState(false);
   const [selectedNoticeProduct, setSelectedNoticeProduct] = useState(null);
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySuccess, setNotifySuccess] = useState(false);
   const [isNotifying, setIsNotifying] = useState(false);
 
-  const handleQuantityChange = (id, delta) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [id]: Math.max(1, Math.min(20, (prev[id] || 1) + delta))
-    }));
+  const handleQuantityChange = (product, delta) => {
+    const isManaged = product.manageStock || product.manage_stock;
+    const maxStock = isManaged && product.stockQuantity !== null ? product.stockQuantity : 20;
+
+    setQuantities((prev) => {
+      const current = prev[product.id] || 1;
+      const next = current + delta;
+      if (next < 1) return prev;
+      if (isManaged && next > maxStock) {
+        setStockMessages((m) => ({
+          ...m,
+          [product.id]: `Dostępna maksymalna ilość: ${maxStock} szt.`
+        }));
+        setTimeout(() => {
+          setStockMessages((m) => ({ ...m, [product.id]: null }));
+        }, 3000);
+        return prev;
+      }
+      return {
+        ...prev,
+        [product.id]: Math.min(20, next)
+      };
+    });
   };
 
   const handleOpenNotice = (product) => {
@@ -251,15 +276,55 @@ function ProductsShowcase() {
   };
 
   const handleAddToCart = (product) => {
-    handleOpenNotice(product);
+    const isManaged = product.manageStock || product.manage_stock;
+    const isOutOfStock =
+      product.stockStatus === "OUT_OF_STOCK" ||
+      product.stock_status === "outofstock" ||
+      (isManaged && (product.stockQuantity ?? 0) <= 0);
+
+    if (isOutOfStock) {
+      setStockMessages((m) => ({
+        ...m,
+        [product.id]: "Produkt chwilowo wyprzedany."
+      }));
+      setTimeout(() => {
+        setStockMessages((m) => ({ ...m, [product.id]: null }));
+      }, 3500);
+      return;
+    }
+
+    const qtyToAdd = quantities[product.id] || 1;
+    const result = addToCart(product, qtyToAdd);
+
+    if (!result.success) {
+      setStockMessages((m) => ({
+        ...m,
+        [product.id]: result.message || "Brak wystarczającej ilości na stanie."
+      }));
+      setTimeout(() => {
+        setStockMessages((m) => ({ ...m, [product.id]: null }));
+      }, 3500);
+      return;
+    }
+
+    setAddedAnimation((prev) => ({ ...prev, [product.id]: true }));
+    setTimeout(() => {
+      setAddedAnimation((prev) => ({ ...prev, [product.id]: false }));
+    }, 2000);
   };
 
   const renderProductCard = (product) => {
+    const isManaged = product.manageStock || product.manage_stock;
+    const isOutOfStock =
+      product.stockStatus === "OUT_OF_STOCK" ||
+      product.stock_status === "outofstock" ||
+      (isManaged && (product.stockQuantity ?? 0) <= 0);
+    const stockMsg = stockMessages[product.id];
     const currentQty = quantities[product.id] || 1;
     const isJustAdded = addedAnimation[product.id];
 
     return (
-      <article key={product.id} className="productCard">
+      <article key={product.id} className={`productCard ${isOutOfStock ? "productCardOutOfStock" : ""}`}>
         <div className="productImageWrapper">
           <div className="productImageGlow" />
           <img
@@ -345,20 +410,21 @@ function ProductsShowcase() {
             </div>
 
             <div className="cartActionRow">
-              <div className="quantitySelector" aria-label="Wybór ilości">
+              <div className={`quantitySelector ${isOutOfStock ? "disabled" : ""}`} aria-label="Wybór ilości">
                 <button
                   type="button"
                   className="qtyBtn"
-                  onClick={() => handleQuantityChange(product.id, -1)}
-                  disabled={currentQty <= 1}
+                  onClick={() => handleQuantityChange(product, -1)}
+                  disabled={isOutOfStock || currentQty <= 1}
                 >
                   <Minus size={14} />
                 </button>
-                <span className="qtyValue">{currentQty}</span>
+                <span className="qtyValue">{isOutOfStock ? 0 : currentQty}</span>
                 <button
                   type="button"
                   className="qtyBtn"
-                  onClick={() => handleQuantityChange(product.id, 1)}
+                  onClick={() => handleQuantityChange(product, 1)}
+                  disabled={isOutOfStock}
                 >
                   <Plus size={14} />
                 </button>
@@ -366,10 +432,13 @@ function ProductsShowcase() {
 
               <button
                 type="button"
-                className={`addToCartBtn ${isJustAdded ? "added" : ""}`}
+                className={`addToCartBtn ${isOutOfStock ? "outOfStockBtn" : isJustAdded ? "added" : ""}`}
                 onClick={() => handleAddToCart(product)}
+                disabled={isOutOfStock}
               >
-                {isJustAdded ? (
+                {isOutOfStock ? (
+                  <span>Brak w magazynie</span>
+                ) : isJustAdded ? (
                   <>
                     <Check size={18} />
                     <span>Dodano ({currentQty})!</span>
@@ -382,6 +451,12 @@ function ProductsShowcase() {
                 )}
               </button>
             </div>
+
+            {stockMsg && (
+              <div className="stockFeedbackToast" role="alert">
+                <span>{stockMsg}</span>
+              </div>
+            )}
           </div>
         </div>
       </article>

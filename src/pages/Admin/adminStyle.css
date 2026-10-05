@@ -467,13 +467,15 @@
   color: rgba(var(--accent-color), 0.5);
 }
 
-.priceEditRow {
+.priceEditRow,
+.stockEditRow {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.priceInput {
+.priceInput,
+.stockInput {
   width: 90px;
   padding: 6px 10px;
   border-radius: 6px;
@@ -484,12 +486,50 @@
   outline: none;
 }
 
+.stockStatusWrap {
+  display: flex;
+  align-items: center;
+}
+
+.stockBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.stockBadge.inStock {
+  background: rgba(22, 163, 74, 0.12);
+  color: rgb(21, 128, 61);
+  border: 1px solid rgba(22, 163, 74, 0.25);
+}
+
+.stockBadge.outOfStock {
+  background: rgba(220, 38, 38, 0.12);
+  color: rgb(185, 28, 28);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.productActionsCell {
+  display: flex;
+  align-items: center;
+}
+
+.actionButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .actionButtons {
   display: flex;
   gap: 8px;
 }
 
-.btnSavePrice {
+.btnSavePrice,
+.btnSaveStock {
   background: rgb(var(--secondary-color));
   color: var(--text-white);
   border: none;
@@ -498,6 +538,11 @@
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.btnSaveStock {
+  background: rgb(var(--accent-color));
 }
 
 .btnCancelPrice {
@@ -508,24 +553,28 @@
   border-radius: 6px;
   font-size: 0.8rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-.btnEditPrice {
+.btnEditPrice,
+.btnEditStock {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: transparent;
   border: 1px solid rgba(var(--accent-color), 0.15);
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 6px;
   font-size: 0.8rem;
   font-weight: 600;
   color: rgb(var(--accent-color));
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.btnEditPrice:hover {
+.btnEditPrice:hover,
+.btnEditStock:hover {
   border-color: rgb(var(--secondary-color));
   color: rgb(var(--secondary-color));
 }

@@ -20,7 +20,7 @@ function Footer() {
 
           <div className="footerCol brandCol">
             <Link to="/" onClick={scrollToTop} className="footerLogoLink">
-              <span className="footerLogo">Kolonaki</span>
+              <img src="/img/logo2.png" alt="Kolonaki" className="footerLogoImg" />
             </Link>
             <p className="footerBrandText">
               Autentyczna grecka oliwa extra virgin prosto z serca Peloponezu.

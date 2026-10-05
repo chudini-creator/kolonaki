@@ -44,6 +44,25 @@ export async function updateWooProductPrice(productId, regularPrice, keys) {
   return res.json();
 }
 
+export async function updateWooProductStock(productId, stockQuantity, keys) {
+  const parsedQty = stockQuantity === "" || stockQuantity === null ? null : parseInt(stockQuantity, 10);
+  const bodyPayload = parsedQty === null
+    ? { manage_stock: false, stock_status: "instock" }
+    : {
+        manage_stock: true,
+        stock_quantity: Math.max(0, parsedQty),
+        stock_status: Math.max(0, parsedQty) > 0 ? "instock" : "outofstock"
+      };
+
+  const res = await fetch(`${WP_API_BASE}/products/${productId}`, {
+    method: "PUT",
+    headers: getAuthHeaders(keys.consumerKey, keys.consumerSecret),
+    body: JSON.stringify(bodyPayload),
+  });
+  if (!res.ok) throw new Error("Błąd aktualizacji stanu magazynowego");
+  return res.json();
+}
+
 export async function createWooProduct(productData, keys) {
   const res = await fetch(`${WP_API_BASE}/products`, {
     method: "POST",

@@ -32,6 +32,20 @@
 .footerLogoLink {
   display: inline-block;
   align-self: flex-start;
+  text-decoration: none;
+}
+
+.footerLogoImg {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footerLogoLink:hover .footerLogoImg {
+  opacity: 0.88;
+  transform: scale(1.02);
 }
 
 .footerLogo {
@@ -190,6 +204,23 @@ a.footerContactItem:hover {
 }
 
 @media screen and (max-width: 640px) {
+  .footerCol.brandCol {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footerLogoLink {
+    align-self: center;
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .footerBrandText {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+  }
+
   .footerMainSection {
     padding: 50px 20px 40px;
   }

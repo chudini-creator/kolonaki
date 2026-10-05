@@ -66,8 +66,8 @@ function Header() {
       <div className="headerContainer">
         
         <h1 className="logo">
-          <Link to="/" onClick={closeMenu}>
-            Kolonaki
+          <Link to="/" onClick={closeMenu} className="logoLink">
+            <img src="/img/logo.png" alt="Kolonaki" className="logoImg" />
           </Link>
         </h1>
 
@@ -128,7 +128,7 @@ function Header() {
         <div className="mobileNavContent">
           <ul className="mobileNavList">
             <li>
-              <Link to="/o-nas" className="mobileNavLink" onClick={closeMenu}>
+              <Link to="/o-mnie" className="mobileNavLink" onClick={closeMenu}>
                 O mnie
               </Link>
             </li>

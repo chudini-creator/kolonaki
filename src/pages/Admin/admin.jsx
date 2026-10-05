@@ -3,11 +3,11 @@ import { Helmet } from "react-helmet-async";
 import {
   Package, ShoppingCart, TrendingUp, AlertCircle, CheckCircle2,
   Clock, Edit2, Plus, LogOut, KeyRound, RefreshCw, Search,
-  ExternalLink, Eye, ChevronRight, X
+  ExternalLink, Eye, ChevronRight, X, Boxes
 } from "lucide-react";
 import {
   fetchWooOrders, updateWooOrderStatus,
-  fetchWooProducts, updateWooProductPrice, createWooProduct
+  fetchWooProducts, updateWooProductPrice, updateWooProductStock, createWooProduct
 } from "../../services/wooAdminService";
 import "./adminStyle.css";
 
@@ -38,10 +38,14 @@ function Admin() {
   const [editingPriceId, setEditingPriceId] = useState(null);
   const [tempPrice, setTempPrice] = useState("");
 
+  const [editingStockId, setEditingStockId] = useState(null);
+  const [tempStock, setTempStock] = useState("");
+
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
     name: "",
     regular_price: "",
+    stock_quantity: "",
     description: "",
   });
 
@@ -113,13 +117,44 @@ function Admin() {
     }
   };
 
+  const handleSaveStock = async (productId) => {
+    try {
+      const updated = await updateWooProductStock(productId, tempStock, keys);
+      setProducts((prev) =>
+        prev.map((p) =>
+          p.id === productId
+            ? {
+                ...p,
+                manage_stock: updated.manage_stock,
+                stock_quantity: updated.stock_quantity,
+                stock_status: updated.stock_status,
+              }
+            : p
+        )
+      );
+      setEditingStockId(null);
+    } catch {
+      alert("Nie udało się zaktualizować stanu magazynowego.");
+    }
+  };
+
   const handleCreateProductSubmit = async (e) => {
     e.preventDefault();
     try {
-      const created = await createWooProduct(newProduct, keys);
+      const payload = {
+        name: newProduct.name,
+        regular_price: newProduct.regular_price,
+        description: newProduct.description,
+      };
+      if (newProduct.stock_quantity !== "") {
+        payload.manage_stock = true;
+        payload.stock_quantity = parseInt(newProduct.stock_quantity, 10);
+        payload.stock_status = parseInt(newProduct.stock_quantity, 10) > 0 ? "instock" : "outofstock";
+      }
+      const created = await createWooProduct(payload, keys);
       setProducts((prev) => [created, ...prev]);
       setIsAddModalOpen(false);
-      setNewProduct({ name: "", regular_price: "", description: "" });
+      setNewProduct({ name: "", regular_price: "", stock_quantity: "", description: "" });
     } catch {
       alert("Błąd podczas dodawania produktu.");
     }
@@ -391,12 +426,17 @@ function Admin() {
                   <tr>
                     <th>Produkt</th>
                     <th>Aktualna cena</th>
+                    <th>Stan magazynowy</th>
                     <th>Akcja</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map((product) => {
-                    const isEditing = editingPriceId === product.id;
+                    const isEditingPrice = editingPriceId === product.id;
+                    const isEditingStock = editingStockId === product.id;
+                    const hasStock = product.manage_stock
+                      ? (product.stock_quantity ?? 0) > 0
+                      : product.stock_status !== "outofstock";
 
                     return (
                       <tr key={product.id}>
@@ -416,7 +456,7 @@ function Admin() {
                           </div>
                         </td>
                         <td>
-                          {isEditing ? (
+                          {isEditingPrice ? (
                             <div className="priceEditRow">
                               <input
                                 type="number"
@@ -435,33 +475,97 @@ function Admin() {
                           )}
                         </td>
                         <td>
-                          {isEditing ? (
-                            <div className="actionButtons">
-                              <button
-                                onClick={() => handleSavePrice(product.id)}
-                                className="btnSavePrice"
-                              >
-                                Zapisz
-                              </button>
-                              <button
-                                onClick={() => setEditingPriceId(null)}
-                                className="btnCancelPrice"
-                              >
-                                Anuluj
-                              </button>
+                          {isEditingStock ? (
+                            <div className="stockEditRow">
+                              <input
+                                type="number"
+                                min="0"
+                                step="1"
+                                className="stockInput"
+                                placeholder="Ilość szt."
+                                value={tempStock}
+                                onChange={(e) => setTempStock(e.target.value)}
+                                autoFocus
+                              />
+                              <span className="unitLabel">szt.</span>
                             </div>
                           ) : (
-                            <button
-                              onClick={() => {
-                                setEditingPriceId(product.id);
-                                setTempPrice(product.price || product.regular_price || "");
-                              }}
-                              className="btnEditPrice"
-                            >
-                              <Edit2 size={14} />
-                              <span>Zmień cenę</span>
-                            </button>
+                            <div className="stockStatusWrap">
+                              <span className={`stockBadge ${hasStock ? "inStock" : "outOfStock"}`}>
+                                {product.manage_stock
+                                  ? `${product.stock_quantity ?? 0} szt.`
+                                  : product.stock_status === "outofstock"
+                                  ? "Brak na stanie"
+                                  : "Nieograniczony"}
+                              </span>
+                            </div>
                           )}
+                        </td>
+                        <td>
+                          <div className="productActionsCell">
+                            {isEditingPrice ? (
+                              <div className="actionButtons">
+                                <button
+                                  onClick={() => handleSavePrice(product.id)}
+                                  className="btnSavePrice"
+                                >
+                                  Zapisz cenę
+                                </button>
+                                <button
+                                  onClick={() => setEditingPriceId(null)}
+                                  className="btnCancelPrice"
+                                >
+                                  Anuluj
+                                </button>
+                              </div>
+                            ) : isEditingStock ? (
+                              <div className="actionButtons">
+                                <button
+                                  onClick={() => handleSaveStock(product.id)}
+                                  className="btnSaveStock"
+                                >
+                                  Zapisz stan
+                                </button>
+                                <button
+                                  onClick={() => setEditingStockId(null)}
+                                  className="btnCancelPrice"
+                                >
+                                  Anuluj
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="actionButtonGroup">
+                                <button
+                                  onClick={() => {
+                                    setEditingPriceId(product.id);
+                                    setTempPrice(product.price || product.regular_price || "");
+                                    setEditingStockId(null);
+                                  }}
+                                  className="btnEditPrice"
+                                  title="Zmień cenę"
+                                >
+                                  <Edit2 size={13} />
+                                  <span>Cena</span>
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    setEditingStockId(product.id);
+                                    setTempStock(
+                                      product.manage_stock && product.stock_quantity !== null
+                                        ? String(product.stock_quantity)
+                                        : ""
+                                    );
+                                    setEditingPriceId(null);
+                                  }}
+                                  className="btnEditStock"
+                                  title="Ustal stan magazynowy"
+                                >
+                                  <Boxes size={13} />
+                                  <span>Stan</span>
+                                </button>
+                              </div>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     );
@@ -502,6 +606,17 @@ function Admin() {
                   placeholder="np. 89.00"
                   value={newProduct.regular_price}
                   onChange={(e) => setNewProduct({ ...newProduct, regular_price: e.target.value })}
+                />
+              </div>
+              <div className="authFormGroup">
+                <label>Stan magazynowy (ilość sztuk, opcjonalnie):</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="1"
+                  placeholder="np. 50 (zostaw puste dla nielimitowanego)"
+                  value={newProduct.stock_quantity}
+                  onChange={(e) => setNewProduct({ ...newProduct, stock_quantity: e.target.value })}
                 />
               </div>
               <div className="authFormGroup">

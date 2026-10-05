@@ -49,8 +49,17 @@ function CartBarAndModal() {
   }, [isCartOpen, setIsCartOpen]);
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [cartStockMessage, setCartStockMessage] = useState(null);
 
   const fmt = (n) => n.toFixed(2).replace(".", ",") + " zł";
+
+  const handleCartQtyChange = (productId, newQty) => {
+    const res = updateQuantity(productId, newQty);
+    if (res && !res.success) {
+      setCartStockMessage(res.message);
+      setTimeout(() => setCartStockMessage(null), 3500);
+    }
+  };
 
   const handleAddressChange = (field) => (e) => {
     setCourierAddress((prev) => ({ ...prev, [field]: e.target.value }));
@@ -271,11 +280,11 @@ function CartBarAndModal() {
                           </div>
                           <div className="cartItemActions">
                             <div className="cartItemQtyPicker">
-                              <button type="button" className="cartQtyBtn" onClick={() => updateQuantity(id, quantity - 1)} aria-label="Zmniejsz ilość">
+                              <button type="button" className="cartQtyBtn" onClick={() => handleCartQtyChange(id, quantity - 1)} aria-label="Zmniejsz ilość">
                                 <Minus size={12} />
                               </button>
                               <span className="cartQtyNum">{quantity}</span>
-                              <button type="button" className="cartQtyBtn" onClick={() => updateQuantity(id, quantity + 1)} aria-label="Zwiększ ilość">
+                              <button type="button" className="cartQtyBtn" onClick={() => handleCartQtyChange(id, quantity + 1)} aria-label="Zwiększ ilość">
                                 <Plus size={12} />
                               </button>
                             </div>
@@ -288,6 +297,12 @@ function CartBarAndModal() {
                       );
                     })}
                   </div>
+
+                  {cartStockMessage && (
+                    <div className="cartStockAlertBanner" role="alert">
+                      <span>{cartStockMessage}</span>
+                    </div>
+                  )}
 
                   <div className="shippingSection">
                     <div className="shippingHeaderRow">

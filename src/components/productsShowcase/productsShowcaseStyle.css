@@ -418,9 +418,39 @@
   box-shadow: 0 8px 20px rgba(var(--secondary-color), 0.4);
 }
 
-.addToCartBtn.added {
-  background-color: rgb(var(--secondary-color));
-  box-shadow: 0 4px 16px rgba(var(--secondary-color), 0.45);
+.quantitySelector.disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.addToCartBtn.outOfStockBtn {
+  background-color: rgba(var(--accent-color), 0.12);
+  color: rgba(var(--accent-color), 0.5);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.addToCartBtn.outOfStockBtn:hover {
+  background-color: rgba(var(--accent-color), 0.12);
+  color: rgba(var(--accent-color), 0.5);
+  transform: none;
+  box-shadow: none;
+}
+
+.productCardOutOfStock .productImage {
+  opacity: 0.85;
+}
+
+.stockFeedbackToast {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgba(var(--accent-color), 0.08);
+  border-left: 3px solid rgb(var(--secondary-color));
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgb(var(--accent-color));
+  animation: fadeIn 0.2s ease;
 }
 
 .noticeModalOverlay {
